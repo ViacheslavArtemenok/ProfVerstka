@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var Tc = +prompt('Введите температуру в градусах Цельсия');
+        if (isNaN(Tc)) {
+            alert('Вы ввели символ!!!' + '\nПерезагрузите страницу и введите температуру в градусах Цельсия в виде числа!');
+        } else {
+            let Tf = ((9 / 5) * Tc + 32);
+            Tf = parseInt(Tf);
+            alert('Температура по Фарингейту равна ' + Tf + ' градусов');
+            let name = prompt('Введите ваше имя');
+            let admin = name;
+            alert('Поздравляю, ' + admin + '! Теперь вы администратор сайта!!!');
+            let answer = +prompt('Чему будет равно JS-выражение 1000 + \"108\"?');
+            if (answer == 1000108) {
+                alert('Правильно! ' + answer + ' !!!');
+            } else {
+                alert('Не правильно, 1000108 !!!');
+            }
+            alert('Разница между async и defer: атрибут defer сохраняет относительную последовательность скриптов, \
+а скрипты с async загружаются параллельно. Кроме того, defer всегда ждёт, \
+пока весь HTML-документ будет готов, а async загружаются независимо от HTML-страницы, \
+хорошо подходят для рекламы, счетчиков и т.п.');
+        }
+    </script>
+</body>
+
+</html>
