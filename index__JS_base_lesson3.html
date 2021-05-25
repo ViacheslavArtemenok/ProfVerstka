@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let i = 0;
+        let j = 0;
+        let arr100 = [];
+        let arrCart = [];
+        let arrSmall = [];
+        let arrPyr = [];
+        let userChoice = 0;
+        while (i <= 100) {
+            arr100.push(i);
+            i++
+        }
+        alert('Все простые числа от 0 до 100:\n' + arr100);
+        function checkItemCart(userChoice) {
+            switch (userChoice) {
+                case 123450:
+                    arrCart.push(item123450);
+                    return true;
+                case 123451:
+                    arrCart.push(item123451);
+                    return true;
+                case 123452:
+                    arrCart.push(item123452);
+                    return true;
+                case 123453:
+                    arrCart.push(item123453);
+                    return true;
+                case 123454:
+                    arrCart.push(item123454);
+                    return true;
+                case 123455:
+                    arrCart.push(item123455);
+                    return true;
+                case 123456:
+                    arrCart.push(item123456);
+                    return true;
+                case 123457:
+                    arrCart.push(item123457);
+                    return true;
+                case 123458:
+                    arrCart.push(item123458);
+                    return true;
+                case 123459:
+                    arrCart.push(item123459);
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        function countBasketPrice(arr) {
+            let sumResult = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sumResult += arr[i];
+            } return sumResult;
+        }
+
+        let item123450 = 409;
+        let item123451 = 419;
+        let item123452 = 390;
+        let item123453 = 509;
+        let item123454 = 599;
+        let item123455 = 379;
+        let item123456 = 399;
+        let item123457 = 439;
+        let item123458 = 529;
+        let item123459 = 449;
+        while (true) {
+            userChoice = +prompt('Товаров в корзине: ' + j + '\nВведите артикул товара, чтобы добавить товар\
+                \nв корзину и нажмите \"ОК\"\nЧтобы перейти в корзину, оставьте окно пустым и нажмите \"OK\".\
+                \nКАТАЛОГ ТОВАРОВ\nФутболка \"Icool\" 409 руб., артикул: 123450\
+                \nФутболка \"FLA\" 419 руб., артикул: 123451\nФутболка \"RAM\" 390 руб., артикул: 123452\
+                 \nФутболка \"Lili\" 509 руб., артикул: 123453\nФутболка \"Ice\" 599 руб., артикул: 123454\
+                 \nФутболка \"BabyES\" 379 руб., артикул: 123455\
+                 \nФутболка \"DOTig\" 399 руб., артикул: 123456\nФутболка \"Race\" 439 руб., артикул: 123457\
+                 \nФутболка \"Boom\" 529 руб., артикул: 123458\nФутболка \"NY\" 449 руб., артикул: 123459');
+            if (userChoice == "") {
+                let cartSum = countBasketPrice(arrCart)
+                alert('Товаров в корзине: ' + j + '\n' + 'Сумма к оплате: ' + cartSum + ' рублей.')
+                break;
+
+            } else {
+                let resultChoise = checkItemCart(userChoice);
+                if (resultChoise == true) {
+                    j++;
+                    alert('Товар добавлен в корзину');
+                } else {
+                    alert('Введен неправильный артикул!\nВведите артикул заново');
+                }
+
+
+            }
+        }
+        for (let k = 0; k <= 9; arrSmall.push(k), k++) { }
+        alert('Весь ряд: ' + arrSmall);
+        let itemPyr = 'x';
+        for (let k = 0; k < 20; console.log(itemPyr), itemPyr += 'x', k++) { }
+
+    </script>
+</body>
+
+</html>
