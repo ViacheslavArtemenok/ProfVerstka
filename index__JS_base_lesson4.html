@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+        function NumToObj(num) {
+            var arrNumber = num.split('');
+            while (arrNumber.length < 3) {
+                arrNumber.unshift(0);
+            }
+            var objNumber = {};
+            if (arrNumber.length > 3) {
+                return null;
+            }
+            else {
+                objNumber['сотни'] = ' ' + +arrNumber[0];
+                objNumber['десятки'] = ' ' + +arrNumber[1];
+                objNumber['единицы'] = ' ' + +arrNumber[2];
+                return objNumber;
+            }
+        }
+        while (true) {
+            var number = prompt("Введите число в промежутке от 0 до 999");
+            if (isNaN(number) || number < 0) {
+                alert("Введено неверное число!");
+                continue;
+            }
+            var obj = NumToObj(number);
+            if (obj == null) {
+                console.log("Object is null");
+                alert("Введено число свыше 999");
+
+            }
+            else {
+                console.log(obj);
+                alert(Object.entries(obj).join('\n'));
+                break;
+            }
+        }
+        let i = 0;
+        let j = 0;
+        let arrCart = [];
+        let userChoice = 0;
+        let objCart = {};
+        function checkItemCart(userChoice) {
+            switch (userChoice) {
+                case 123450:
+                    arrCart.push(item123450);
+                    count123450++;
+                    objCart['Футболка \"Icool\" 409 руб.'] = ' ' + count123450 + ' шт.';
+                    return true;
+                case 123451:
+                    arrCart.push(item123451);
+                    count123451++;
+                    objCart['Футболка \"FLA\" 419 руб.'] = ' ' + count123451 + ' шт.';
+                    return true;
+                case 123452:
+                    arrCart.push(item123452);
+                    count123452++;
+                    objCart['Футболка \"RAM\" 390 руб.'] = ' ' + count123452 + ' шт.';
+                    return true;
+                case 123453:
+                    arrCart.push(item123453);
+                    count123453++;
+                    objCart['Футболка \"Lili\" 509 руб.'] = ' ' + count123453 + ' шт.';
+                    return true;
+                case 123454:
+                    arrCart.push(item123454);
+                    count123454++;
+                    objCart['Футболка \"Ice\" 599 руб.'] = ' ' + count123454 + ' шт.';
+                    return true;
+                case 123455:
+                    arrCart.push(item123455);
+                    count123455++;
+                    objCart['Футболка \"BabyES\" 379 руб.'] = ' ' + count123455 + ' шт.';
+                    return true;
+                case 123456:
+                    arrCart.push(item123456);
+                    count123456++;
+                    objCart['Футболка \"DOTig\" 399 руб.'] = ' ' + count123456 + ' шт.';
+                    return true;
+                case 123457:
+                    arrCart.push(item123457);
+                    count123457++;
+                    objCart['Футболка \"Race\" 439 руб.'] = ' ' + count123457 + ' шт.';
+                    return true;
+                case 123458:
+                    arrCart.push(item123458);
+                    count123458++;
+                    objCart['Футболка \"Boom\" 529 руб.'] = ' ' + count123458 + ' шт.';
+                    return true;
+                case 123459:
+                    arrCart.push(item123459);
+                    count123459++;
+                    objCart['Футболка \"NY\" 449 руб.'] = ' ' + count123459 + ' шт.';
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        function countBasketPrice(arr) {
+            let sumResult = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sumResult += arr[i];
+            } return sumResult;
+        }
+
+        let item123450 = 409;
+        let count123450 = 0;
+        let item123451 = 419;
+        let count123451 = 0;
+        let item123452 = 390;
+        let count123452 = 0;
+        let item123453 = 509;
+        let count123453 = 0;
+        let item123454 = 599;
+        let count123454 = 0;
+        let item123455 = 379;
+        let count123455 = 0;
+        let item123456 = 399;
+        let count123456 = 0;
+        let item123457 = 439;
+        let count123457 = 0;
+        let item123458 = 529;
+        let count123458 = 0;
+        let item123459 = 449;
+        let count123459 = 0;
+        while (true) {
+            userChoice = +prompt('Товаров в корзине: ' + j + '\nВведите артикул товара, чтобы добавить товар\
+                    \nв корзину и нажмите \"ОК\"\nЧтобы перейти в корзину, оставьте окно пустым и нажмите \"OK\".\
+                    \nКАТАЛОГ ТОВАРОВ\nФутболка \"Icool\" 409 руб., артикул: 123450\
+                    \nФутболка \"FLA\" 419 руб., артикул: 123451\nФутболка \"RAM\" 390 руб., артикул: 123452\
+                     \nФутболка \"Lili\" 509 руб., артикул: 123453\nФутболка \"Ice\" 599 руб., артикул: 123454\
+                     \nФутболка \"BabyES\" 379 руб., артикул: 123455\
+                     \nФутболка \"DOTig\" 399 руб., артикул: 123456\nФутболка \"Race\" 439 руб., артикул: 123457\
+                     \nФутболка \"Boom\" 529 руб., артикул: 123458\nФутболка \"NY\" 449 руб., артикул: 123459');
+            if (userChoice == "") {
+                let cartSum = countBasketPrice(arrCart)
+                alert(Object.entries(objCart).join('\n') + '\nТоваров в корзине: ' + j + '\n' + 'Сумма к оплате: ' + cartSum + ' рублей.')
+                break;
+
+            } else {
+                let resultChoise = checkItemCart(userChoice);
+                if (resultChoise == true) {
+                    j++;
+                    alert('Товар добавлен в корзину');
+                } else {
+                    alert('Введен неправильный артикул!\nВведите артикул заново');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
