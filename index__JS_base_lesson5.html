@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="mainTittle">Каталог</h1>
+    <h3 id="listItems">
+        Футболка "Icool" 409 руб., артикул: 123450<br>
+        <br>
+        Футболка "FLA" 419 руб., артикул: 123451<br>
+        <br>
+        Футболка "RAM" 390 руб., артикул: 123452<br>
+        <br>
+        Футболка "Lili" 509 руб., артикул: 123453<br>
+        <br>
+        Футболка "Ice" 599 руб., артикул: 123454<br>
+        <br>
+        Футболка "BabyES" 379 руб., артикул: 123455<br>
+        <br>
+        Футболка "DOTig" 399 руб., артикул: 123456<br>
+        <br>
+        Футболка "Race" 439 руб., артикул: 123457<br>
+        <br>
+        Футболка "Boom" 529 руб., артикул: 123458<br>
+        <br>
+        Футболка "NY" 449 руб., артикул: 123459
+    </h3>
+    <br>
+    <br>
+    <h4 id="countItems">Корзина пуста</h4>
+    <h4 style="display:none" id="countSum">#</h4>
+    <input type="text" id="infoPRD" placeholder="Введите артикул товара">
+    <br>
+    <br>
+    <button type="submit" id="btnAdd" onClick="workCart();">Добавить товар в корзину</button>
+    <br>
+    <br>
+    <button type="submit" style="display:none" id="btnClear" onClick="clearCart();">Очистить корзину</button>
+    <br>
+    <br>
+    <button type="submit" style="display:none" id="btnCart" onClick="goToCart();">Перейти в корзину</button>
+    <button type="submit" style="display:none" id="btnPay" onClick="payCart();">Оплатить</button>
+    <br>
+    <br>
+    <br>
+    <h2 id="chess">Показать шахматную доску?</h2>
+    <button type="submit" id="btnChess" onClick="chessShow();">Показать</button>
+    <br>
+    <div id="box" style="display: flex; flex-wrap: wrap; width: 900px;"></div>
+    <script>
+        'use strict'
+        function writeh1(text) {
+            document.getElementById("mainTittle").innerHTML = text;
+        }
+
+        function writeh3(text) {
+            document.getElementById("listItems").innerHTML = text;
+        }
+
+        function writeh4(text) {
+            document.getElementById("countItems").innerHTML = text;
+        }
+        function write5(text) {
+            document.getElementById("countSum").innerHTML = text;
+        }
+
+        function hide(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        function show(id) {
+            document.getElementById(id).style.display = "inline-block";
+        }
+        function readInt() {
+            let article = document.getElementById("infoPRD").value;
+            return parseInt(article);
+        }
+        function clearCart() {
+            location.reload();
+        }
+        function goToCart() {
+            let cartSum = countBasketPrice(arrCart);
+            writeh1('Корзина');
+            writeh3(Object.entries(objCart).join('<br>'));
+            writeh4('Товаров в корзине: ' + j);
+            show("countSum");
+            show("btnPay");
+            write5('Сумма к оплате: ' + cartSum + ' рублей.');
+            hide("infoPRD");
+            hide("btnAdd");
+            hide("btnCart");
+        }
+        function payCart() {
+            alert('Оплата прошла успешно!');
+            location.reload();
+        }
+
+        let i = 0;
+        let j = 0;
+        let arrCart = [];
+        let userChoice = 0;
+        let objCart = {};
+        function checkItemCart(userChoice) {
+            switch (userChoice) {
+                case 123450:
+                    arrCart.push(item123450);
+                    count123450++;
+                    objCart['Футболка \"Icool\" 409 руб.'] = ' ' + count123450 + ' шт.';
+                    return true;
+                case 123451:
+                    arrCart.push(item123451);
+                    count123451++;
+                    objCart['Футболка \"FLA\" 419 руб.'] = ' ' + count123451 + ' шт.';
+                    return true;
+                case 123452:
+                    arrCart.push(item123452);
+                    count123452++;
+                    objCart['Футболка \"RAM\" 390 руб.'] = ' ' + count123452 + ' шт.';
+                    return true;
+                case 123453:
+                    arrCart.push(item123453);
+                    count123453++;
+                    objCart['Футболка \"Lili\" 509 руб.'] = ' ' + count123453 + ' шт.';
+                    return true;
+                case 123454:
+                    arrCart.push(item123454);
+                    count123454++;
+                    objCart['Футболка \"Ice\" 599 руб.'] = ' ' + count123454 + ' шт.';
+                    return true;
+                case 123455:
+                    arrCart.push(item123455);
+                    count123455++;
+                    objCart['Футболка \"BabyES\" 379 руб.'] = ' ' + count123455 + ' шт.';
+                    return true;
+                case 123456:
+                    arrCart.push(item123456);
+                    count123456++;
+                    objCart['Футболка \"DOTig\" 399 руб.'] = ' ' + count123456 + ' шт.';
+                    return true;
+                case 123457:
+                    arrCart.push(item123457);
+                    count123457++;
+                    objCart['Футболка \"Race\" 439 руб.'] = ' ' + count123457 + ' шт.';
+                    return true;
+                case 123458:
+                    arrCart.push(item123458);
+                    count123458++;
+                    objCart['Футболка \"Boom\" 529 руб.'] = ' ' + count123458 + ' шт.';
+                    return true;
+                case 123459:
+                    arrCart.push(item123459);
+                    count123459++;
+                    objCart['Футболка \"NY\" 449 руб.'] = ' ' + count123459 + ' шт.';
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        function countBasketPrice(arr) {
+            let sumResult = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sumResult += arr[i];
+            } return sumResult;
+        }
+
+        let item123450 = 409;
+        let count123450 = 0;
+        let item123451 = 419;
+        let count123451 = 0;
+        let item123452 = 390;
+        let count123452 = 0;
+        let item123453 = 509;
+        let count123453 = 0;
+        let item123454 = 599;
+        let count123454 = 0;
+        let item123455 = 379;
+        let count123455 = 0;
+        let item123456 = 399;
+        let count123456 = 0;
+        let item123457 = 439;
+        let count123457 = 0;
+        let item123458 = 529;
+        let count123458 = 0;
+        let item123459 = 449;
+        let count123459 = 0;
+
+        function workCart() {
+            userChoice = readInt();
+            let resultChoise = checkItemCart(userChoice);
+            if (resultChoise == true) {
+                j++;
+                alert('Товар добавлен в корзину');
+                writeh4('Товаров в корзине: ' + j);
+                show("btnClear");
+                show("btnCart");
+            } else {
+                alert('Введен неверный артикул...\nВведите артикул заново!');
+            }
+        }
+        function chessShow() {
+            hide("chess");
+            hide("btnChess");
+
+            var newDiv0 = document.createElement("div");
+            newDiv0.className = "block";
+            newDiv0.innerHTML = "<p></p>";
+            newDiv0.style.color = "black";
+            newDiv0.style.textAlign = "center";
+            newDiv0.style.backgroundColor = "white";
+            newDiv0.style.height = "50px";
+            newDiv0.style.width = "50px";
+            box.appendChild(newDiv0);
+
+            var newDiv0_a = document.createElement("div");
+            newDiv0_a.className = "block";
+            newDiv0_a.innerHTML = "<p>A</p>";
+            newDiv0_a.style.color = "black";
+            newDiv0_a.style.textAlign = "center";
+            newDiv0_a.style.backgroundColor = "white";
+            newDiv0_a.style.height = "50px";
+            newDiv0_a.style.width = "100px";
+            box.appendChild(newDiv0_a);
+
+            var newDiv0_b = document.createElement("div");
+            newDiv0_b.className = "block";
+            newDiv0_b.innerHTML = "<p>B</p>";
+            newDiv0_b.style.color = "black";
+            newDiv0_b.style.textAlign = "center";
+            newDiv0_b.style.backgroundColor = "white";
+            newDiv0_b.style.height = "50px";
+            newDiv0_b.style.width = "100px";
+            box.appendChild(newDiv0_b);
+
+            var newDiv0_c = document.createElement("div");
+            newDiv0_c.className = "block";
+            newDiv0_c.innerHTML = "<p>C</p>";
+            newDiv0_c.style.color = "black";
+            newDiv0_c.style.textAlign = "center";
+            newDiv0_c.style.backgroundColor = "white";
+            newDiv0_c.style.height = "50px";
+            newDiv0_c.style.width = "100px";
+            box.appendChild(newDiv0_c);
+
+            var newDiv0_d = document.createElement("div");
+            newDiv0_d.className = "block";
+            newDiv0_d.innerHTML = "<p>D</p>";
+            newDiv0_d.style.color = "black";
+            newDiv0_d.style.textAlign = "center";
+            newDiv0_d.style.backgroundColor = "white";
+            newDiv0_d.style.height = "50px";
+            newDiv0_d.style.width = "100px";
+            box.appendChild(newDiv0_d);
+
+            var newDiv0_e = document.createElement("div");
+            newDiv0_e.className = "block";
+            newDiv0_e.innerHTML = "<p>E</p>";
+            newDiv0_e.style.color = "black";
+            newDiv0_e.style.textAlign = "center";
+            newDiv0_e.style.backgroundColor = "white";
+            newDiv0_e.style.height = "50px";
+            newDiv0_e.style.width = "100px";
+            box.appendChild(newDiv0_e);
+
+            var newDiv0_f = document.createElement("div");
+            newDiv0_f.className = "block";
+            newDiv0_f.innerHTML = "<p>F</p>";
+            newDiv0_f.style.color = "black";
+            newDiv0_f.style.textAlign = "center";
+            newDiv0_f.style.backgroundColor = "white";
+            newDiv0_f.style.height = "50px";
+            newDiv0_f.style.width = "100px";
+            box.appendChild(newDiv0_f);
+
+            var newDiv0_g = document.createElement("div");
+            newDiv0_g.className = "block";
+            newDiv0_g.innerHTML = "<p>G</p>";
+            newDiv0_g.style.color = "black";
+            newDiv0_g.style.textAlign = "center";
+            newDiv0_g.style.backgroundColor = "white";
+            newDiv0_g.style.height = "50px";
+            newDiv0_g.style.width = "100px";
+            box.appendChild(newDiv0_g);
+
+            var newDiv0_h = document.createElement("div");
+            newDiv0_h.className = "block";
+            newDiv0_h.innerHTML = "<p>H</p>";
+            newDiv0_h.style.color = "black";
+            newDiv0_h.style.textAlign = "center";
+            newDiv0_h.style.backgroundColor = "white";
+            newDiv0_h.style.height = "50px";
+            newDiv0_h.style.width = "100px";
+            box.appendChild(newDiv0_h);
+
+            var newDiv0 = document.createElement("div");
+            newDiv0.className = "block";
+            newDiv0.innerHTML = "<p></p>";
+            newDiv0.style.color = "black";
+            newDiv0.style.textAlign = "center";
+            newDiv0.style.backgroundColor = "white";
+            newDiv0.style.height = "50px";
+            newDiv0.style.width = "50px";
+            box.appendChild(newDiv0);
+
+            var newDiv8 = document.createElement("div");
+            newDiv8.className = "block";
+            newDiv8.innerHTML = "<p>8</p>";
+            newDiv8.style.color = "black";
+            newDiv8.style.textAlign = "center";
+            newDiv8.style.backgroundColor = "white";
+            newDiv8.style.height = "100px";
+            newDiv8.style.width = "50px";
+            box.appendChild(newDiv8);
+
+            var newDiva_8 = document.createElement("div");
+            newDiva_8.className = "block";
+            newDiva_8.innerHTML = "<p>Ладья</p>";
+            newDiva_8.style.color = "black";
+            newDiva_8.style.textAlign = "center";
+            newDiva_8.style.backgroundColor = "rgb(180, 180, 180)";
+            newDiva_8.style.height = "100px";
+            newDiva_8.style.width = "100px";
+            box.appendChild(newDiva_8);
+
+            var newDivb_8 = document.createElement("div");
+            newDivb_8.className = "block";
+            newDivb_8.innerHTML = "<p>Конь</p>";
+            newDivb_8.style.color = "black";
+            newDivb_8.style.textAlign = "center";
+            newDivb_8.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivb_8.style.height = "100px";
+            newDivb_8.style.width = "100px";
+            box.appendChild(newDivb_8);
+
+            var newDivc_8 = document.createElement("div");
+            newDivc_8.className = "block";
+            newDivc_8.innerHTML = "<p>Слон</p>";
+            newDivc_8.style.color = "black";
+            newDivc_8.style.textAlign = "center";
+            newDivc_8.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivc_8.style.height = "100px";
+            newDivc_8.style.width = "100px";
+            box.appendChild(newDivc_8);
+
+            var newDivd_8 = document.createElement("div");
+            newDivd_8.className = "block";
+            newDivd_8.innerHTML = "<p>Ферзь</p>";
+            newDivd_8.style.color = "black";
+            newDivd_8.style.textAlign = "center";
+            newDivd_8.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivd_8.style.height = "100px";
+            newDivd_8.style.width = "100px";
+            box.appendChild(newDivd_8);
+
+            var newDive_8 = document.createElement("div");
+            newDive_8.className = "block";
+            newDive_8.innerHTML = "<p>Король</p>";
+            newDive_8.style.color = "black";
+            newDive_8.style.textAlign = "center";
+            newDive_8.style.backgroundColor = "rgb(180, 180, 180)";
+            newDive_8.style.height = "100px";
+            newDive_8.style.width = "100px";
+            box.appendChild(newDive_8);
+
+            var newDivf_8 = document.createElement("div");
+            newDivf_8.className = "block";
+            newDivf_8.innerHTML = "<p>Слон</p>";
+            newDivf_8.style.color = "black";
+            newDivf_8.style.textAlign = "center";
+            newDivf_8.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivf_8.style.height = "100px";
+            newDivf_8.style.width = "100px";
+            box.appendChild(newDivf_8);
+
+            var newDivg_8 = document.createElement("div");
+            newDivg_8.className = "block";
+            newDivg_8.innerHTML = "<p>Конь</p>";
+            newDivg_8.style.color = "black";
+            newDivg_8.style.textAlign = "center";
+            newDivg_8.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivg_8.style.height = "100px";
+            newDivg_8.style.width = "100px";
+            box.appendChild(newDivg_8);
+
+            var newDivh_8 = document.createElement("div");
+            newDivh_8.className = "block";
+            newDivh_8.innerHTML = "<p>Ладья</p>";
+            newDivh_8.style.color = "black";
+            newDivh_8.style.textAlign = "center";
+            newDivh_8.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivh_8.style.height = "100px";
+            newDivh_8.style.width = "100px";
+            box.appendChild(newDivh_8);
+
+            var newDiv8 = document.createElement("div");
+            newDiv8.className = "block";
+            newDiv8.innerHTML = "<p>8</p>";
+            newDiv8.style.color = "black";
+            newDiv8.style.textAlign = "center";
+            newDiv8.style.backgroundColor = "white";
+            newDiv8.style.height = "100px";
+            newDiv8.style.width = "50px";
+            box.appendChild(newDiv8);
+
+            var newDiv7 = document.createElement("div");
+            newDiv7.className = "block";
+            newDiv7.innerHTML = "<p>7</p>";
+            newDiv7.style.color = "black";
+            newDiv7.style.textAlign = "center";
+            newDiv7.style.backgroundColor = "white";
+            newDiv7.style.height = "100px";
+            newDiv7.style.width = "50px";
+            box.appendChild(newDiv7);
+
+            var newDiva_7 = document.createElement("div");
+            newDiva_7.className = "block";
+            newDiva_7.innerHTML = "<p>Пешка</p>";
+            newDiva_7.style.color = "black";
+            newDiva_7.style.textAlign = "center";
+            newDiva_7.style.backgroundColor = "rgb(66, 66, 66)";
+            newDiva_7.style.height = "100px";
+            newDiva_7.style.width = "100px";
+            box.appendChild(newDiva_7);
+
+            var newDivb_7 = document.createElement("div");
+            newDivb_7.className = "block";
+            newDivb_7.innerHTML = "<p>Пешка</p>";
+            newDivb_7.style.color = "black";
+            newDivb_7.style.textAlign = "center";
+            newDivb_7.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivb_7.style.height = "100px";
+            newDivb_7.style.width = "100px";
+            box.appendChild(newDivb_7);
+
+            var newDivc_7 = document.createElement("div");
+            newDivc_7.className = "block";
+            newDivc_7.innerHTML = "<p>Пешка</p>";
+            newDivc_7.style.color = "black";
+            newDivc_7.style.textAlign = "center";
+            newDivc_7.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivc_7.style.height = "100px";
+            newDivc_7.style.width = "100px";
+            box.appendChild(newDivc_7);
+
+            var newDivd_7 = document.createElement("div");
+            newDivd_7.className = "block";
+            newDivd_7.innerHTML = "<p>Пешка</p>";
+            newDivd_7.style.color = "black";
+            newDivd_7.style.textAlign = "center";
+            newDivd_7.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivd_7.style.height = "100px";
+            newDivd_7.style.width = "100px";
+            box.appendChild(newDivd_7);
+
+            var newDive_7 = document.createElement("div");
+            newDive_7.className = "block";
+            newDive_7.innerHTML = "<p>Пешка</p>";
+            newDive_7.style.color = "black";
+            newDive_7.style.textAlign = "center";
+            newDive_7.style.backgroundColor = "rgb(66, 66, 66)";
+            newDive_7.style.height = "100px";
+            newDive_7.style.width = "100px";
+            box.appendChild(newDive_7);
+
+            var newDivf_7 = document.createElement("div");
+            newDivf_7.className = "block";
+            newDivf_7.innerHTML = "<p>Пешка</p>";
+            newDivf_7.style.color = "black";
+            newDivf_7.style.textAlign = "center";
+            newDivf_7.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivf_7.style.height = "100px";
+            newDivf_7.style.width = "100px";
+            box.appendChild(newDivf_7);
+
+            var newDivg_7 = document.createElement("div");
+            newDivg_7.className = "block";
+            newDivg_7.innerHTML = "<p>Пешка</p>";
+            newDivg_7.style.color = "black";
+            newDivg_7.style.textAlign = "center";
+            newDivg_7.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivg_7.style.height = "100px";
+            newDivg_7.style.width = "100px";
+            box.appendChild(newDivg_7);
+
+            var newDivh_7 = document.createElement("div");
+            newDivh_7.className = "block";
+            newDivh_7.innerHTML = "<p>Пешка</p>";
+            newDivh_7.style.color = "black";
+            newDivh_7.style.textAlign = "center";
+            newDivh_7.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivh_7.style.height = "100px";
+            newDivh_7.style.width = "100px";
+            box.appendChild(newDivh_7);
+
+            var newDiv7 = document.createElement("div");
+            newDiv7.className = "block";
+            newDiv7.innerHTML = "<p>7</p>";
+            newDiv7.style.color = "black";
+            newDiv7.style.textAlign = "center";
+            newDiv7.style.backgroundColor = "white";
+            newDiv7.style.height = "100px";
+            newDiv7.style.width = "50px";
+            box.appendChild(newDiv7);
+
+            var newDiv6 = document.createElement("div");
+            newDiv6.className = "block";
+            newDiv6.innerHTML = "<p>6</p>";
+            newDiv6.style.color = "black";
+            newDiv6.style.textAlign = "center";
+            newDiv6.style.backgroundColor = "white";
+            newDiv6.style.height = "100px";
+            newDiv6.style.width = "50px";
+            box.appendChild(newDiv6);
+
+            var newDiva_6 = document.createElement("div");
+            newDiva_6.className = "block";
+            newDiva_6.innerHTML = "<p></p>";
+            newDiva_6.style.color = "black";
+            newDiva_6.style.textAlign = "center";
+            newDiva_6.style.backgroundColor = "rgb(180, 180, 180)";
+            newDiva_6.style.height = "100px";
+            newDiva_6.style.width = "100px";
+            box.appendChild(newDiva_6);
+
+            var newDivb_6 = document.createElement("div");
+            newDivb_6.className = "block";
+            newDivb_6.innerHTML = "<p></p>";
+            newDivb_6.style.color = "black";
+            newDivb_6.style.textAlign = "center";
+            newDivb_6.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivb_6.style.height = "100px";
+            newDivb_6.style.width = "100px";
+            box.appendChild(newDivb_6);
+
+            var newDivc_6 = document.createElement("div");
+            newDivc_6.className = "block";
+            newDivc_6.innerHTML = "<p></p>";
+            newDivc_6.style.color = "black";
+            newDivc_6.style.textAlign = "center";
+            newDivc_6.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivc_6.style.height = "100px";
+            newDivc_6.style.width = "100px";
+            box.appendChild(newDivc_6);
+
+            var newDivd_6 = document.createElement("div");
+            newDivd_6.className = "block";
+            newDivd_6.innerHTML = "<p></p>";
+            newDivd_6.style.color = "black";
+            newDivd_6.style.textAlign = "center";
+            newDivd_6.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivd_6.style.height = "100px";
+            newDivd_6.style.width = "100px";
+            box.appendChild(newDivd_6);
+
+            var newDive_6 = document.createElement("div");
+            newDive_6.className = "block";
+            newDive_6.innerHTML = "<p></p>";
+            newDive_6.style.color = "black";
+            newDive_6.style.textAlign = "center";
+            newDive_6.style.backgroundColor = "rgb(180, 180, 180)";
+            newDive_6.style.height = "100px";
+            newDive_6.style.width = "100px";
+            box.appendChild(newDive_6);
+
+            var newDivf_6 = document.createElement("div");
+            newDivf_6.className = "block";
+            newDivf_6.innerHTML = "<p></p>";
+            newDivf_6.style.color = "black";
+            newDivf_6.style.textAlign = "center";
+            newDivf_6.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivf_6.style.height = "100px";
+            newDivf_6.style.width = "100px";
+            box.appendChild(newDivf_6);
+
+            var newDivg_6 = document.createElement("div");
+            newDivg_6.className = "block";
+            newDivg_6.innerHTML = "<p></p>";
+            newDivg_6.style.color = "black";
+            newDivg_6.style.textAlign = "center";
+            newDivg_6.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivg_6.style.height = "100px";
+            newDivg_6.style.width = "100px";
+            box.appendChild(newDivg_6);
+
+            var newDivh_6 = document.createElement("div");
+            newDivh_6.className = "block";
+            newDivh_6.innerHTML = "<p></p>";
+            newDivh_6.style.color = "black";
+            newDivh_6.style.textAlign = "center";
+            newDivh_6.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivh_6.style.height = "100px";
+            newDivh_6.style.width = "100px";
+            box.appendChild(newDivh_6);
+
+            var newDiv6 = document.createElement("div");
+            newDiv6.className = "block";
+            newDiv6.innerHTML = "<p>6</p>";
+            newDiv6.style.color = "black";
+            newDiv6.style.textAlign = "center";
+            newDiv6.style.backgroundColor = "white";
+            newDiv6.style.height = "100px";
+            newDiv6.style.width = "50px";
+            box.appendChild(newDiv6);
+
+            var newDiv5 = document.createElement("div");
+            newDiv5.className = "block";
+            newDiv5.innerHTML = "<p>5</p>";
+            newDiv5.style.color = "black";
+            newDiv5.style.textAlign = "center";
+            newDiv5.style.backgroundColor = "white";
+            newDiv5.style.height = "100px";
+            newDiv5.style.width = "50px";
+            box.appendChild(newDiv5);
+
+            var newDiva_5 = document.createElement("div");
+            newDiva_5.className = "block";
+            newDiva_5.innerHTML = "<p></p>";
+            newDiva_5.style.color = "black";
+            newDiva_5.style.textAlign = "center";
+            newDiva_5.style.backgroundColor = "rgb(66, 66, 66)";
+            newDiva_5.style.height = "100px";
+            newDiva_5.style.width = "100px";
+            box.appendChild(newDiva_5);
+
+            var newDivb_5 = document.createElement("div");
+            newDivb_5.className = "block";
+            newDivb_5.innerHTML = "<p></p>";
+            newDivb_5.style.color = "black";
+            newDivb_5.style.textAlign = "center";
+            newDivb_5.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivb_5.style.height = "100px";
+            newDivb_5.style.width = "100px";
+            box.appendChild(newDivb_5);
+
+            var newDivc_5 = document.createElement("div");
+            newDivc_5.className = "block";
+            newDivc_5.innerHTML = "<p></p>";
+            newDivc_5.style.color = "black";
+            newDivc_5.style.textAlign = "center";
+            newDivc_5.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivc_5.style.height = "100px";
+            newDivc_5.style.width = "100px";
+            box.appendChild(newDivc_5);
+
+            var newDivd_5 = document.createElement("div");
+            newDivd_5.className = "block";
+            newDivd_5.innerHTML = "<p></p>";
+            newDivd_5.style.color = "black";
+            newDivd_5.style.textAlign = "center";
+            newDivd_5.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivd_5.style.height = "100px";
+            newDivd_5.style.width = "100px";
+            box.appendChild(newDivd_5);
+
+            var newDive_5 = document.createElement("div");
+            newDive_5.className = "block";
+            newDive_5.innerHTML = "<p></p>";
+            newDive_5.style.color = "black";
+            newDive_5.style.textAlign = "center";
+            newDive_5.style.backgroundColor = "rgb(66, 66, 66)";
+            newDive_5.style.height = "100px";
+            newDive_5.style.width = "100px";
+            box.appendChild(newDive_5);
+
+            var newDivf_5 = document.createElement("div");
+            newDivf_5.className = "block";
+            newDivf_5.innerHTML = "<p></p>";
+            newDivf_5.style.color = "black";
+            newDivf_5.style.textAlign = "center";
+            newDivf_5.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivf_5.style.height = "100px";
+            newDivf_5.style.width = "100px";
+            box.appendChild(newDivf_5);
+
+            var newDivg_5 = document.createElement("div");
+            newDivg_5.className = "block";
+            newDivg_5.innerHTML = "<p></p>";
+            newDivg_5.style.color = "black";
+            newDivg_5.style.textAlign = "center";
+            newDivg_5.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivg_5.style.height = "100px";
+            newDivg_5.style.width = "100px";
+            box.appendChild(newDivg_5);
+
+            var newDivh_5 = document.createElement("div");
+            newDivh_5.className = "block";
+            newDivh_5.innerHTML = "<p></p>";
+            newDivh_5.style.color = "black";
+            newDivh_5.style.textAlign = "center";
+            newDivh_5.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivh_5.style.height = "100px";
+            newDivh_5.style.width = "100px";
+            box.appendChild(newDivh_5);
+
+            var newDiv5 = document.createElement("div");
+            newDiv5.className = "block";
+            newDiv5.innerHTML = "<p>5</p>";
+            newDiv5.style.color = "black";
+            newDiv5.style.textAlign = "center";
+            newDiv5.style.backgroundColor = "white";
+            newDiv5.style.height = "100px";
+            newDiv5.style.width = "50px";
+            box.appendChild(newDiv5);
+
+            var newDiv4 = document.createElement("div");
+            newDiv4.className = "block";
+            newDiv4.innerHTML = "<p>4</p>";
+            newDiv4.style.color = "black";
+            newDiv4.style.textAlign = "center";
+            newDiv4.style.backgroundColor = "white";
+            newDiv4.style.height = "100px";
+            newDiv4.style.width = "50px";
+            box.appendChild(newDiv4);
+
+            var newDiva_4 = document.createElement("div");
+            newDiva_4.className = "block";
+            newDiva_4.innerHTML = "<p></p>";
+            newDiva_4.style.color = "black";
+            newDiva_4.style.textAlign = "center";
+            newDiva_4.style.backgroundColor = "rgb(180, 180, 180)";
+            newDiva_4.style.height = "100px";
+            newDiva_4.style.width = "100px";
+            box.appendChild(newDiva_4);
+
+            var newDivb_4 = document.createElement("div");
+            newDivb_4.className = "block";
+            newDivb_4.innerHTML = "<p></p>";
+            newDivb_4.style.color = "black";
+            newDivb_4.style.textAlign = "center";
+            newDivb_4.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivb_4.style.height = "100px";
+            newDivb_4.style.width = "100px";
+            box.appendChild(newDivb_4);
+
+            var newDivc_4 = document.createElement("div");
+            newDivc_4.className = "block";
+            newDivc_4.innerHTML = "<p></p>";
+            newDivc_4.style.color = "black";
+            newDivc_4.style.textAlign = "center";
+            newDivc_4.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivc_4.style.height = "100px";
+            newDivc_4.style.width = "100px";
+            box.appendChild(newDivc_4);
+
+            var newDivd_4 = document.createElement("div");
+            newDivd_4.className = "block";
+            newDivd_4.innerHTML = "<p></p>";
+            newDivd_4.style.color = "black";
+            newDivd_4.style.textAlign = "center";
+            newDivd_4.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivd_4.style.height = "100px";
+            newDivd_4.style.width = "100px";
+            box.appendChild(newDivd_4);
+
+            var newDive_4 = document.createElement("div");
+            newDive_4.className = "block";
+            newDive_4.innerHTML = "<p></p>";
+            newDive_4.style.color = "black";
+            newDive_4.style.textAlign = "center";
+            newDive_4.style.backgroundColor = "rgb(180, 180, 180)";
+            newDive_4.style.height = "100px";
+            newDive_4.style.width = "100px";
+            box.appendChild(newDive_4);
+
+            var newDivf_4 = document.createElement("div");
+            newDivf_4.className = "block";
+            newDivf_4.innerHTML = "<p></p>";
+            newDivf_4.style.color = "black";
+            newDivf_4.style.textAlign = "center";
+            newDivf_4.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivf_4.style.height = "100px";
+            newDivf_4.style.width = "100px";
+            box.appendChild(newDivf_4);
+
+            var newDivg_4 = document.createElement("div");
+            newDivg_4.className = "block";
+            newDivg_4.innerHTML = "<p></p>";
+            newDivg_4.style.color = "black";
+            newDivg_4.style.textAlign = "center";
+            newDivg_4.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivg_4.style.height = "100px";
+            newDivg_4.style.width = "100px";
+            box.appendChild(newDivg_4);
+
+            var newDivh_4 = document.createElement("div");
+            newDivh_4.className = "block";
+            newDivh_4.innerHTML = "<p></p>";
+            newDivh_4.style.color = "black";
+            newDivh_4.style.textAlign = "center";
+            newDivh_4.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivh_4.style.height = "100px";
+            newDivh_4.style.width = "100px";
+            box.appendChild(newDivh_4);
+
+            var newDiv4 = document.createElement("div");
+            newDiv4.className = "block";
+            newDiv4.innerHTML = "<p>4</p>";
+            newDiv4.style.color = "black";
+            newDiv4.style.textAlign = "center";
+            newDiv4.style.backgroundColor = "white";
+            newDiv4.style.height = "100px";
+            newDiv4.style.width = "50px";
+            box.appendChild(newDiv4);
+
+            var newDiv3 = document.createElement("div");
+            newDiv3.className = "block";
+            newDiv3.innerHTML = "<p>3</p>";
+            newDiv3.style.color = "black";
+            newDiv3.style.textAlign = "center";
+            newDiv3.style.backgroundColor = "white";
+            newDiv3.style.height = "100px";
+            newDiv3.style.width = "50px";
+            box.appendChild(newDiv3);
+
+            var newDiva_3 = document.createElement("div");
+            newDiva_3.className = "block";
+            newDiva_3.innerHTML = "<p></p>";
+            newDiva_3.style.color = "black";
+            newDiva_3.style.textAlign = "center";
+            newDiva_3.style.backgroundColor = "rgb(66, 66, 66)";
+            newDiva_3.style.height = "100px";
+            newDiva_3.style.width = "100px";
+            box.appendChild(newDiva_3);
+
+            var newDivb_3 = document.createElement("div");
+            newDivb_3.className = "block";
+            newDivb_3.innerHTML = "<p></p>";
+            newDivb_3.style.color = "black";
+            newDivb_3.style.textAlign = "center";
+            newDivb_3.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivb_3.style.height = "100px";
+            newDivb_3.style.width = "100px";
+            box.appendChild(newDivb_3);
+
+            var newDivc_3 = document.createElement("div");
+            newDivc_3.className = "block";
+            newDivc_3.innerHTML = "<p></p>";
+            newDivc_3.style.color = "black";
+            newDivc_3.style.textAlign = "center";
+            newDivc_3.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivc_3.style.height = "100px";
+            newDivc_3.style.width = "100px";
+            box.appendChild(newDivc_3);
+
+            var newDivd_3 = document.createElement("div");
+            newDivd_3.className = "block";
+            newDivd_3.innerHTML = "<p></p>";
+            newDivd_3.style.color = "black";
+            newDivd_3.style.textAlign = "center";
+            newDivd_3.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivd_3.style.height = "100px";
+            newDivd_3.style.width = "100px";
+            box.appendChild(newDivd_3);
+
+            var newDive_3 = document.createElement("div");
+            newDive_3.className = "block";
+            newDive_3.innerHTML = "<p></p>";
+            newDive_3.style.color = "black";
+            newDive_3.style.textAlign = "center";
+            newDive_3.style.backgroundColor = "rgb(66, 66, 66)";
+            newDive_3.style.height = "100px";
+            newDive_3.style.width = "100px";
+            box.appendChild(newDive_3);
+
+            var newDivf_3 = document.createElement("div");
+            newDivf_3.className = "block";
+            newDivf_3.innerHTML = "<p></p>";
+            newDivf_3.style.color = "black";
+            newDivf_3.style.textAlign = "center";
+            newDivf_3.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivf_3.style.height = "100px";
+            newDivf_3.style.width = "100px";
+            box.appendChild(newDivf_3);
+
+            var newDivg_3 = document.createElement("div");
+            newDivg_3.className = "block";
+            newDivg_3.innerHTML = "<p></p>";
+            newDivg_3.style.color = "black";
+            newDivg_3.style.textAlign = "center";
+            newDivg_3.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivg_3.style.height = "100px";
+            newDivg_3.style.width = "100px";
+            box.appendChild(newDivg_3);
+
+            var newDivh_3 = document.createElement("div");
+            newDivh_3.className = "block";
+            newDivh_3.innerHTML = "<p></p>";
+            newDivh_3.style.color = "black";
+            newDivh_3.style.textAlign = "center";
+            newDivh_3.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivh_3.style.height = "100px";
+            newDivh_3.style.width = "100px";
+            box.appendChild(newDivh_3);
+
+            var newDiv3 = document.createElement("div");
+            newDiv3.className = "block";
+            newDiv3.innerHTML = "<p>3</p>";
+            newDiv3.style.color = "black";
+            newDiv3.style.textAlign = "center";
+            newDiv3.style.backgroundColor = "white";
+            newDiv3.style.height = "100px";
+            newDiv3.style.width = "50px";
+            box.appendChild(newDiv3);
+
+            var newDiv2 = document.createElement("div");
+            newDiv2.className = "block";
+            newDiv2.innerHTML = "<p>2</p>";
+            newDiv2.style.color = "black";
+            newDiv2.style.textAlign = "center";
+            newDiv2.style.backgroundColor = "white";
+            newDiv2.style.height = "100px";
+            newDiv2.style.width = "50px";
+            box.appendChild(newDiv2);
+
+            var newDiva_2 = document.createElement("div");
+            newDiva_2.className = "block";
+            newDiva_2.innerHTML = "<p>Пешка</p>";
+            newDiva_2.style.color = "white";
+            newDiva_2.style.textAlign = "center";
+            newDiva_2.style.backgroundColor = "rgb(180, 180, 180)";
+            newDiva_2.style.height = "100px";
+            newDiva_2.style.width = "100px";
+            box.appendChild(newDiva_2);
+
+            var newDivb_2 = document.createElement("div");
+            newDivb_2.className = "block";
+            newDivb_2.innerHTML = "<p>Пешка</p>";
+            newDivb_2.style.color = "white";
+            newDivb_2.style.textAlign = "center";
+            newDivb_2.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivb_2.style.height = "100px";
+            newDivb_2.style.width = "100px";
+            box.appendChild(newDivb_2);
+
+            var newDivc_2 = document.createElement("div");
+            newDivc_2.className = "block";
+            newDivc_2.innerHTML = "<p>Пешка</p>";
+            newDivc_2.style.color = "white";
+            newDivc_2.style.textAlign = "center";
+            newDivc_2.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivc_2.style.height = "100px";
+            newDivc_2.style.width = "100px";
+            box.appendChild(newDivc_2);
+
+            var newDivd_2 = document.createElement("div");
+            newDivd_2.className = "block";
+            newDivd_2.innerHTML = "<p>Пешка</p>";
+            newDivd_2.style.color = "white";
+            newDivd_2.style.textAlign = "center";
+            newDivd_2.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivd_2.style.height = "100px";
+            newDivd_2.style.width = "100px";
+            box.appendChild(newDivd_2);
+
+            var newDive_2 = document.createElement("div");
+            newDive_2.className = "block";
+            newDive_2.innerHTML = "<p>Пешка</p>";
+            newDive_2.style.color = "white";
+            newDive_2.style.textAlign = "center";
+            newDive_2.style.backgroundColor = "rgb(180, 180, 180)";
+            newDive_2.style.height = "100px";
+            newDive_2.style.width = "100px";
+            box.appendChild(newDive_2);
+
+            var newDivf_2 = document.createElement("div");
+            newDivf_2.className = "block";
+            newDivf_2.innerHTML = "<p>Пешка</p>";
+            newDivf_2.style.color = "white";
+            newDivf_2.style.textAlign = "center";
+            newDivf_2.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivf_2.style.height = "100px";
+            newDivf_2.style.width = "100px";
+            box.appendChild(newDivf_2);
+
+            var newDivg_2 = document.createElement("div");
+            newDivg_2.className = "block";
+            newDivg_2.innerHTML = "<p>Пешка</p>";
+            newDivg_2.style.color = "white";
+            newDivg_2.style.textAlign = "center";
+            newDivg_2.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivg_2.style.height = "100px";
+            newDivg_2.style.width = "100px";
+            box.appendChild(newDivg_2);
+
+            var newDivh_2 = document.createElement("div");
+            newDivh_2.className = "block";
+            newDivh_2.innerHTML = "<p>Пешка</p>";
+            newDivh_2.style.color = "white";
+            newDivh_2.style.textAlign = "center";
+            newDivh_2.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivh_2.style.height = "100px";
+            newDivh_2.style.width = "100px";
+            box.appendChild(newDivh_2);
+
+            var newDiv2 = document.createElement("div");
+            newDiv2.className = "block";
+            newDiv2.innerHTML = "<p>2</p>";
+            newDiv2.style.color = "black";
+            newDiv2.style.textAlign = "center";
+            newDiv2.style.backgroundColor = "white";
+            newDiv2.style.height = "100px";
+            newDiv2.style.width = "50px";
+            box.appendChild(newDiv2);
+
+            var newDiv1 = document.createElement("div");
+            newDiv1.className = "block";
+            newDiv1.innerHTML = "<p>1</p>";
+            newDiv1.style.color = "black";
+            newDiv1.style.textAlign = "center";
+            newDiv1.style.backgroundColor = "white";
+            newDiv1.style.height = "100px";
+            newDiv1.style.width = "50px";
+            box.appendChild(newDiv1);
+
+            var newDiva_1 = document.createElement("div");
+            newDiva_1.className = "block";
+            newDiva_1.innerHTML = "<p>Ладья</p>";
+            newDiva_1.style.color = "white";
+            newDiva_1.style.textAlign = "center";
+            newDiva_1.style.backgroundColor = "rgb(66, 66, 66)";
+            newDiva_1.style.height = "100px";
+            newDiva_1.style.width = "100px";
+            box.appendChild(newDiva_1);
+
+            var newDivb_1 = document.createElement("div");
+            newDivb_1.className = "block";
+            newDivb_1.innerHTML = "<p>Конь</p>";
+            newDivb_1.style.color = "white";
+            newDivb_1.style.textAlign = "center";
+            newDivb_1.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivb_1.style.height = "100px";
+            newDivb_1.style.width = "100px";
+            box.appendChild(newDivb_1);
+
+            var newDivc_1 = document.createElement("div");
+            newDivc_1.className = "block";
+            newDivc_1.innerHTML = "<p>Слон</p>";
+            newDivc_1.style.color = "white";
+            newDivc_1.style.textAlign = "center";
+            newDivc_1.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivc_1.style.height = "100px";
+            newDivc_1.style.width = "100px";
+            box.appendChild(newDivc_1);
+
+            var newDivd_1 = document.createElement("div");
+            newDivd_1.className = "block";
+            newDivd_1.innerHTML = "<p>Ферзь</p>";
+            newDivd_1.style.color = "white";
+            newDivd_1.style.textAlign = "center";
+            newDivd_1.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivd_1.style.height = "100px";
+            newDivd_1.style.width = "100px";
+            box.appendChild(newDivd_1);
+
+            var newDive_1 = document.createElement("div");
+            newDive_1.className = "block";
+            newDive_1.innerHTML = "<p>Король</p>";
+            newDive_1.style.color = "white";
+            newDive_1.style.textAlign = "center";
+            newDive_1.style.backgroundColor = "rgb(66, 66, 66)";
+            newDive_1.style.height = "100px";
+            newDive_1.style.width = "100px";
+            box.appendChild(newDive_1);
+
+            var newDivf_1 = document.createElement("div");
+            newDivf_1.className = "block";
+            newDivf_1.innerHTML = "<p>Слон</p>";
+            newDivf_1.style.color = "white";
+            newDivf_1.style.textAlign = "center";
+            newDivf_1.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivf_1.style.height = "100px";
+            newDivf_1.style.width = "100px";
+            box.appendChild(newDivf_1);
+
+            var newDivg_1 = document.createElement("div");
+            newDivg_1.className = "block";
+            newDivg_1.innerHTML = "<p>Конь</p>";
+            newDivg_1.style.color = "white";
+            newDivg_1.style.textAlign = "center";
+            newDivg_1.style.backgroundColor = "rgb(66, 66, 66)";
+            newDivg_1.style.height = "100px";
+            newDivg_1.style.width = "100px";
+            box.appendChild(newDivg_1);
+
+            var newDivh_1 = document.createElement("div");
+            newDivh_1.className = "block";
+            newDivh_1.innerHTML = "<p>Ладья</p>";
+            newDivh_1.style.color = "white";
+            newDivh_1.style.textAlign = "center";
+            newDivh_1.style.backgroundColor = "rgb(180, 180, 180)";
+            newDivh_1.style.height = "100px";
+            newDivh_1.style.width = "100px";
+            box.appendChild(newDivh_1);
+
+            var newDiv1 = document.createElement("div");
+            newDiv1.className = "block";
+            newDiv1.innerHTML = "<p>1</p>";
+            newDiv1.style.color = "black";
+            newDiv1.style.textAlign = "center";
+            newDiv1.style.backgroundColor = "white";
+            newDiv1.style.height = "100px";
+            newDiv1.style.width = "50px";
+            box.appendChild(newDiv1);
+
+            var newDiv0 = document.createElement("div");
+            newDiv0.className = "block";
+            newDiv0.innerHTML = "<p></p>";
+            newDiv0.style.color = "black";
+            newDiv0.style.textAlign = "center";
+            newDiv0.style.backgroundColor = "white";
+            newDiv0.style.height = "50px";
+            newDiv0.style.width = "50px";
+            box.appendChild(newDiv0);
+
+            var newDiv0_a = document.createElement("div");
+            newDiv0_a.className = "block";
+            newDiv0_a.innerHTML = "<p>A</p>";
+            newDiv0_a.style.color = "black";
+            newDiv0_a.style.textAlign = "center";
+            newDiv0_a.style.backgroundColor = "white";
+            newDiv0_a.style.height = "50px";
+            newDiv0_a.style.width = "100px";
+            box.appendChild(newDiv0_a);
+
+            var newDiv0_b = document.createElement("div");
+            newDiv0_b.className = "block";
+            newDiv0_b.innerHTML = "<p>B</p>";
+            newDiv0_b.style.color = "black";
+            newDiv0_b.style.textAlign = "center";
+            newDiv0_b.style.backgroundColor = "white";
+            newDiv0_b.style.height = "50px";
+            newDiv0_b.style.width = "100px";
+            box.appendChild(newDiv0_b);
+
+            var newDiv0_c = document.createElement("div");
+            newDiv0_c.className = "block";
+            newDiv0_c.innerHTML = "<p>C</p>";
+            newDiv0_c.style.color = "black";
+            newDiv0_c.style.textAlign = "center";
+            newDiv0_c.style.backgroundColor = "white";
+            newDiv0_c.style.height = "50px";
+            newDiv0_c.style.width = "100px";
+            box.appendChild(newDiv0_c);
+
+            var newDiv0_d = document.createElement("div");
+            newDiv0_d.className = "block";
+            newDiv0_d.innerHTML = "<p>D</p>";
+            newDiv0_d.style.color = "black";
+            newDiv0_d.style.textAlign = "center";
+            newDiv0_d.style.backgroundColor = "white";
+            newDiv0_d.style.height = "50px";
+            newDiv0_d.style.width = "100px";
+            box.appendChild(newDiv0_d);
+
+            var newDiv0_e = document.createElement("div");
+            newDiv0_e.className = "block";
+            newDiv0_e.innerHTML = "<p>E</p>";
+            newDiv0_e.style.color = "black";
+            newDiv0_e.style.textAlign = "center";
+            newDiv0_e.style.backgroundColor = "white";
+            newDiv0_e.style.height = "50px";
+            newDiv0_e.style.width = "100px";
+            box.appendChild(newDiv0_e);
+
+            var newDiv0_f = document.createElement("div");
+            newDiv0_f.className = "block";
+            newDiv0_f.innerHTML = "<p>F</p>";
+            newDiv0_f.style.color = "black";
+            newDiv0_f.style.textAlign = "center";
+            newDiv0_f.style.backgroundColor = "white";
+            newDiv0_f.style.height = "50px";
+            newDiv0_f.style.width = "100px";
+            box.appendChild(newDiv0_f);
+
+            var newDiv0_g = document.createElement("div");
+            newDiv0_g.className = "block";
+            newDiv0_g.innerHTML = "<p>G</p>";
+            newDiv0_g.style.color = "black";
+            newDiv0_g.style.textAlign = "center";
+            newDiv0_g.style.backgroundColor = "white";
+            newDiv0_g.style.height = "50px";
+            newDiv0_g.style.width = "100px";
+            box.appendChild(newDiv0_g);
+
+            var newDiv0_h = document.createElement("div");
+            newDiv0_h.className = "block";
+            newDiv0_h.innerHTML = "<p>H</p>";
+            newDiv0_h.style.color = "black";
+            newDiv0_h.style.textAlign = "center";
+            newDiv0_h.style.backgroundColor = "white";
+            newDiv0_h.style.height = "50px";
+            newDiv0_h.style.width = "100px";
+            box.appendChild(newDiv0_h);
+
+            var newDiv0 = document.createElement("div");
+            newDiv0.className = "block";
+            newDiv0.innerHTML = "<p></p>";
+            newDiv0.style.color = "black";
+            newDiv0.style.textAlign = "center";
+            newDiv0.style.backgroundColor = "white";
+            newDiv0.style.height = "50px";
+            newDiv0.style.width = "50px";
+            box.appendChild(newDiv0);
+        }
+    </script>
+</body>
+
+</html>
