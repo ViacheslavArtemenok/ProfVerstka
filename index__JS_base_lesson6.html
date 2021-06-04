@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="mainTittle">Каталог</h1>
+    <div id="listItems" style="display: flex; flex-wrap: wrap; max-width: 1300px; gap: 20px; margin: 20px;">
+        <div class="product">
+            <p>Футболка "Icool" 409 руб., артикул: 123450</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123450);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "FLA" 419 руб., артикул: 123451</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123451);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "RAM" 390 руб., артикул: 123452</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123452);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "Lili" 509 руб., артикул: 123453</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123453);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "Ice" 599 руб., артикул: 123454</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123454);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "BabyES" 379 руб., артикул: 123455</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123455);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "DOTig" 399 руб., артикул: 123456</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123456);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "Race" 439 руб., артикул: 123457</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123457);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "Boom" 529 руб., артикул: 123458</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123458);">Добавить товар в корзину</button>
+        </div>
+        <div class="product">
+            <p>Футболка "NY" 449 руб., артикул: 123459</p>
+            <button type="submit" class="btnAdd" onClick="workCart(123459);">Добавить товар в корзину</button>
+        </div>
+    </div>
+    <div id="box_of_buttons"
+        style="display: none; flex-direction: column; align-items: center; position: absolute; top: 80px; left: 280px;">
+        <button type="submit" id="btnDel0" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123450);">Удалить</button>
+        <button type="submit" id="btnDel1" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123451);">Удалить</button>
+        <button type="submit" id="btnDel2" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123452);">Удалить</button>
+        <button type="submit" id="btnDel3" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123453);">Удалить</button>
+        <button type="submit" id="btnDel4" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123454);">Удалить</button>
+        <button type="submit" id="btnDel5" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123455);">Удалить</button>
+        <button type="submit" id="btnDel6" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123456);">Удалить</button>
+        <button type="submit" id="btnDel7" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123457);">Удалить</button>
+        <button type="submit" id="btnDel8" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123458);">Удалить</button>
+        <button type="submit" id="btnDel9" style="display:none; margin: 7px;"
+            onClick="deleteFromCart(123459);">Удалить</button>
+    </div>
+
+    <h4 id="countItems">Корзина пуста</h4>
+    <h4 style="display:none" id="countSum">#</h4>
+    <br>
+    <button type="submit" style="display:none" id="btnClear" onClick="clearCart();">Очистить корзину</button>
+    <button type="submit" style="display:none" id="btnCart" onClick="goToCart();">Перейти в корзину</button>
+    <button type="submit" style="display:none" id="btnPay" onClick="payCart();">Оплатить</button>
+
+    <script>
+        'use strict'
+
+        let newStyleItem = document.getElementsByClassName("product");
+        for (let i = 0; i < newStyleItem.length; i++) {
+            newStyleItem[i].style.boxShadow = "5px 5px 25px gray";
+            newStyleItem[i].style.width = "max-content";
+            newStyleItem[i].style.padding = "20px";
+            newStyleItem[i].style.boxsizing = "border-box";
+            newStyleItem[i].style.width = "200px";
+            newStyleItem[i].style.height = "300px";
+        }
+
+        let i = 0;
+        let j = 0;
+        let arrCart = [];
+        let userChoice = 0;
+        let objCart = {};
+        var ord = 1;
+
+        let item123450 = 409;
+        let count123450 = 0;
+        let item123451 = 419;
+        let count123451 = 0;
+        let item123452 = 390;
+        let count123452 = 0;
+        let item123453 = 509;
+        let count123453 = 0;
+        let item123454 = 599;
+        let count123454 = 0;
+        let item123455 = 379;
+        let count123455 = 0;
+        let item123456 = 399;
+        let count123456 = 0;
+        let item123457 = 439;
+        let count123457 = 0;
+        let item123458 = 529;
+        let count123458 = 0;
+        let item123459 = 449;
+        let count123459 = 0;
+
+        function writeh1(text) {
+            document.getElementById("mainTittle").innerHTML = text;
+        }
+
+        function writeh3(text) {
+            document.getElementById("listItems").innerHTML = text;
+        }
+
+        function writeh4(text) {
+            document.getElementById("countItems").innerHTML = text;
+        }
+        function write5(text) {
+            document.getElementById("countSum").innerHTML = text;
+        }
+
+        function hide(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        function hideClass(someClass) {
+            let newStyle = document.getElementsByClassName(someClass);
+            for (var i = 0; i < newStyle.length; i++) {
+                newStyle[i].style.display = "none";
+            }
+        }
+        function show(id) {
+            document.getElementById(id).style.display = "inline-block";
+        }
+        function showFlex(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+        function addOrder(id, orderN) {
+            document.getElementById(id).style.order = orderN;
+        }
+        function readInt() {
+            let article = document.getElementById("infoPRD").value;
+            return parseInt(article);
+        }
+        function clearCart() {
+            location.reload();
+        }
+        function goToCart() {
+            let cartSum = countBasketPrice(arrCart);
+            writeh1('Корзина');
+            writeh3(Object.entries(objCart).join('<br><br>'));
+            writeh4('Товаров в корзине: ' + j);
+            show("countSum");
+            show("btnPay");
+            showFlex("box_of_buttons");
+            write5('Сумма к оплате: ' + cartSum + ' рублей.');
+            hide("btnCart");
+        }
+        function payCart() {
+            alert('Списание средств с вашей карты...\nОплата прошла успешно!');
+            location.reload();
+        }
+
+        function workCart(article) {
+            userChoice = article;
+            let resultChoise = checkItemCart(userChoice);
+            if (resultChoise == true) {
+                j++;
+                writeh4('Товаров в корзине: ' + j);
+                show("btnClear");
+                show("btnCart");
+            } else {
+                alert('Введен неверный артикул...\nВведите артикул заново!');
+            }
+        }
+
+        function checkItemCart(userChoice) {
+            switch (userChoice) {
+                case 123450:
+                    arrCart.push(item123450);
+                    count123450++;
+                    objCart['Футболка \"Icool\" 409 руб.'] = ' ' + count123450 + ' шт.';
+                    show("btnDel0");
+                    if (count123450 == 1) {
+                        addOrder("btnDel0", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123451:
+                    arrCart.push(item123451);
+                    count123451++;
+                    objCart['Футболка \"FLA\" 419 руб.'] = ' ' + count123451 + ' шт.';
+                    show("btnDel1");
+                    if (count123451 == 1) {
+                        addOrder("btnDel1", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123452:
+                    arrCart.push(item123452);
+                    count123452++;
+                    objCart['Футболка \"RAM\" 390 руб.'] = ' ' + count123452 + ' шт.';
+                    show("btnDel2");
+                    if (count123452 == 1) {
+                        addOrder("btnDel2", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123453:
+                    arrCart.push(item123453);
+                    count123453++;
+                    objCart['Футболка \"Lili\" 509 руб.'] = ' ' + count123453 + ' шт.';
+                    show("btnDel3");
+                    if (count123453 == 1) {
+                        addOrder("btnDel3", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123454:
+                    arrCart.push(item123454);
+                    count123454++;
+                    objCart['Футболка \"Ice\" 599 руб.'] = ' ' + count123454 + ' шт.';
+                    show("btnDel4");
+                    if (count123454 == 1) {
+                        addOrder("btnDel4", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123455:
+                    arrCart.push(item123455);
+                    count123455++;
+                    objCart['Футболка \"BabyES\" 379 руб.'] = ' ' + count123455 + ' шт.';
+                    show("btnDel5");
+                    if (count123455 == 1) {
+                        addOrder("btnDel5", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123456:
+                    arrCart.push(item123456);
+                    count123456++;
+                    objCart['Футболка \"DOTig\" 399 руб.'] = ' ' + count123456 + ' шт.';
+                    show("btnDel6");
+                    if (count123456 == 1) {
+                        addOrder("btnDel6", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123457:
+                    arrCart.push(item123457);
+                    count123457++;
+                    objCart['Футболка \"Race\" 439 руб.'] = ' ' + count123457 + ' шт.';
+                    show("btnDel7");
+                    if (count123457 == 1) {
+                        addOrder("btnDel7", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123458:
+                    arrCart.push(item123458);
+                    count123458++;
+                    objCart['Футболка \"Boom\" 529 руб.'] = ' ' + count123458 + ' шт.';
+                    show("btnDel8");
+                    if (count123458 == 1) {
+                        addOrder("btnDel8", ord);
+                        ord++;
+                    }
+                    return true;
+                case 123459:
+                    arrCart.push(item123459);
+                    count123459++;
+                    objCart['Футболка \"NY\" 449 руб.'] = ' ' + count123459 + ' шт.';
+                    show("btnDel9");
+                    if (count123459 == 1) {
+                        addOrder("btnDel9", ord);
+                        ord++;
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        function deleteFromCart(userChoice) {
+            let cartSumNew = 0;
+            switch (userChoice) {
+                case 123450:
+                    delete objCart['Футболка \"Icool\" 409 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123450;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123450);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel0");
+                    count123450 = 0;
+                    break;
+                case 123451:
+                    delete objCart['Футболка \"FLA\" 419 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123451;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123451);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel1");
+                    count123451 = 0;
+                    break;
+                case 123452:
+                    delete objCart['Футболка \"RAM\" 390 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123452;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123452);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel2");
+                    count123452 = 0;
+                    break;
+                case 123453:
+                    delete objCart['Футболка \"Lili\" 509 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123453;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123453);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel3");
+                    count123453 = 0;
+                    break;
+                case 123454:
+                    delete objCart['Футболка \"Ice\" 599 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123454;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123454);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel4");
+                    count123454 = 0;
+                    break;
+                case 123455:
+                    delete objCart['Футболка \"BabyES\" 379 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123455;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123455);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel5");
+                    count123455 = 0;
+                    break;
+                case 123456:
+                    delete objCart['Футболка \"DOTig\" 399 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123456;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123456);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel6");
+                    count123456 = 0;
+                    break;
+                case 123457:
+                    delete objCart['Футболка \"Race\" 439 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123457;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123457);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel7");
+                    count123457 = 0;
+                    break;
+                case 123458:
+                    delete objCart['Футболка \"Boom\" 529 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123458;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123458);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel8");
+                    count123458 = 0;
+                    break;
+                case 123459:
+                    delete objCart['Футболка \"NY\" 449 руб.'];
+                    writeh3(Object.entries(objCart).join('<br><br>'));
+                    j -= count123459;
+                    writeh4('Товаров в корзине: ' + j);
+                    cartSumNew = countBasketDelete(arrCart, item123459);
+                    if (cartSumNew == 0) {
+                        location.reload();
+                    } else
+                        write5('Сумма к оплате: ' + cartSumNew + ' рублей.');
+                    hide("btnDel9");
+                    count123459 = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        function countBasketPrice(arr) {
+            let sumResult = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sumResult += arr[i];
+            } return sumResult;
+        }
+        function itemArrDelete(arr, itemN) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == itemN) {
+                    arr.splice(i, 1);
+                    i--;
+                }
+            } return arr;
+        }
+
+        function countBasketDelete(arr, itemN) {
+            let sumResult = 0;
+            let arrNew = itemArrDelete(arr, itemN);
+            for (let i = 0; i < arrNew.length; i++) {
+                sumResult += arrNew[i];
+            } return sumResult;
+        }
+
+    </script>
+</body>
+
+</html>
