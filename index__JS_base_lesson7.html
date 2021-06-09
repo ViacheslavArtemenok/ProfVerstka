@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Змейка</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            background: #2e353d;
+        }
+
+        .menuButton {
+            width: 150px;
+            padding: 15px;
+            margin: 10px;
+            color: white;
+            background: #007b32;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .menuButton:hover {
+            background: #009641;
+        }
+
+        #game {
+            border-collapse: collapse;
+            margin: 2% auto 0;
+        }
+
+        #menu {
+            display: flex;
+            justify-content: center;
+        }
+
+        td.cell {
+            width: 20px;
+            height: 20px;
+            border: 1px dotted #eee;
+            border-collapse: collapse;
+        }
+
+        .food {
+            background: #00d021;
+        }
+
+        .trap {
+            background: #dbdbdb;
+        }
+
+        .snakeBody {
+            background: #e0d100;
+        }
+
+        .snakeHead {
+            background: #9b0013;
+        }
+
+        .disabled {
+            background: #7c7c7c;
+        }
+
+        .disabled:hover {
+            background: #7c7c7c;
+        }
+
+        #score {
+            width: 150px;
+            padding: 15px;
+            margin: 10px;
+            color: white;
+            background: #007b32;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-wrap">
+        <table id="game"></table>
+    </div>
+    <div id="menu">
+        <div id="playButton" class="menuButton">Старт</div>
+        <p id="score">Очки: 0</p>
+        <div id="newGameButton" class="menuButton">Новая игра</div>
+    </div>
+
+    <script> //Начало скрипта//////////////////////////////////////////////////////////////////
+        "use strict";
+        let score = 0;
+        function write(id, text) {
+            document.getElementById(id).innerHTML = text;
+        }
+        const settings = {
+            rowsCount: 21,  //Объект настроек
+            colsCount: 21,
+            speed: 3,
+            winFoodCount: 21,
+        };
+
+        const config = {
+            settings,
+
+            init(userSettings) {
+                Object.assign(this.settings, userSettings);
+            },
+
+            getRowsCount() {
+                return this.settings.rowsCount;
+            },
+
+            getColsCount() {
+                return this.settings.colsCount;
+            },
+
+            getSpeed() {
+                return this.settings.speed;
+            },
+
+            getWinFoodCount() {
+                return this.settings.winFoodCount;
+            },
+
+            validate() {
+                const result = {
+                    isValid: true,
+                    errors: [],
+                };
+
+                if (this.getRowsCount() < 10 || this.getRowsCount() > 30) {
+                    result.isValid = false;
+                    result.errors.push('Неверные настройки, значение rowsCount должно быть в диапазоне [10, 30].');
+                }
+
+                if (this.getColsCount() < 10 || this.getColsCount() > 30) {
+                    result.isValid = false;
+                    result.errors.push('Неверные настройки, значение colsCount должно быть в диапазоне [10, 30].');
+                }
+
+                if (this.getSpeed() < 1 || this.getSpeed() > 10) {
+                    result.isValid = false;
+                    result.errors.push('Неверные настройки, значение speed должно быть в диапазоне [1, 10].');
+                }
+
+                if (this.getWinFoodCount() < 5 || this.getWinFoodCount() > 50) {
+                    result.isValid = false;
+                    result.errors.push('Неверные настройки, значение winFoodCount должно быть в диапазоне [5, 50].');
+                }
+
+                return result;
+            },
+        };
+
+        const map = {
+            cells: {}, //Здесь будет храниться карта ячеек таблицы
+            usedCells: [], //Массив объектов с координатами ячеек, не занята ли координата
+
+            init(rowsCount, colsCount) {
+                const table = document.getElementById('game');
+                table.innerHTML = ''; //Очищает табличку, если она была заполнена
+
+                this.cells = {}; //Обнуление ячеек
+                this.usedCells = [];//Обнуление занятых ячеек
+
+                for (let row = 0; row < rowsCount; row++) {     //Отрисовка таблицы
+                    const tr = document.createElement('tr');    //Цикл в цикле
+                    tr.classList.add('row');                     //tr - ряд
+                    table.appendChild(tr);                       //td - ячейка в ряду
+
+                    for (let col = 0; col < colsCount; col++) {
+                        const td = document.createElement('td');
+                        td.classList.add('cell');
+                        tr.appendChild(td);
+
+                        this.cells[`x${col}_y${row}`] = td;
+                    }
+                    //В х интерполируется значение col
+                    //В y интерполируется значение row
+                    //Вместе это всё записывается в виде значения
+                    //ключа cells
+                    //ключу присваивается ссылка на только-что созданный td(ячейку в таблице)
+                }
+            },
+
+            render(snakePointsArray, foodPoint, trapPoint, trapPoint2) {     //Здесь генерится змейка, еда и еще препятствие
+                for (const cell of this.usedCells) {  //Проходит только по занятым ячейкам
+                    cell.className = 'cell';          //Вычищается класс у занятых ячеек
+                }
+
+                this.usedCells = [];           //Обнулили массив и забиваем новыми ячейками
+
+                snakePointsArray.forEach((point, index) => {  //Index нужен для определения головы
+                    const snakeCell = this.cells[`x${point.x}_y${point.y}`];
+                    snakeCell.classList.add(index === 0 ? 'snakeHead' : 'snakeBody');//Используется тернальный оператор
+                    this.usedCells.push(snakeCell);  //если индекс = 0, то присваивается класс snakeHead, иначе класс snakeBody
+                });                                   //добавляем эту ячейку в snakeCell
+
+                const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];//Ячейка, занятая едой
+                foodCell.classList.add('food');//Ячейке присваивается класс food
+                this.usedCells.push(foodCell);//в массив usedCells добавляется ячейка еды
+
+                const trapCell = this.cells[`x${trapPoint.x}_y${trapPoint.y}`];//Ячейка, занятая препятствием
+                trapCell.classList.add('trap');//Ячейке присваивается класс trap
+                this.usedCells.push(trapCell);//в массив usedCells добавляется ячейка препядствия
+
+                const trapCell2 = this.cells[`x${trapPoint2.x}_y${trapPoint2.y}`];//Ячейка, занятая препятствием
+                trapCell2.classList.add('trap');//Ячейке присваивается класс trap
+                this.usedCells.push(trapCell2);//в массив usedCells добавляется ячейка препядствия
+            },
+        };
+
+        const snake = {//Внутри нашей змейки будет следующий набор свойств
+            body: [],//тело
+            direction: null,//направление
+            lastStepDirection: null,//предыдущее направление движения, чтобы не разворачиваться на 180 градусов
+
+            init(startBody, direction) {//Метод с переменными стартовое тело, стартовое направление
+                this.body = startBody;  //Присваиваются ключи тела и направления
+                this.direction = direction;
+                this.lastStepDirection = direction;
+            },
+
+            getBody() {   //гетры
+                return this.body;
+            },
+
+            getLastStepDirection() {
+                return this.lastStepDirection;
+            },
+
+            setDirection(direction) {
+                this.direction = direction;
+            },
+
+            isOnPoint(point) {//Проверяет наличие точки в массиве, если тру, точка попала на змейку
+                return this.getBody().some(snakePoint => snakePoint.x === point.x && snakePoint.y === point.y);
+            },
+            //makeStep мы не можем делать с инвалидными состояниями
+            makeStep() {//Учим змейку делать шаг, перемещаться, добавление новой точки в начало змейки,
+                this.lastStepDirection = this.direction;//исчезновение точки в конце змейки
+                this.getBody().unshift(this.getNextStepHeadPoint());//начало добавилось
+                this.getBody().pop();//Конец удалили
+            },
+
+            growUp() {//Метод роста змейки, когда она "ест"
+                const lastBodyIndex = this.getBody().length - 1;
+                const lastBodyPoint = this.getBody()[lastBodyIndex];
+                const lastBodyPointClone = Object.assign({}, lastBodyPoint);
+
+                this.getBody().push(lastBodyPointClone);//на один ход хвост задержится
+            },
+
+            getNextStepHeadPoint() {
+                const firstPoint = this.getBody()[0];//Объект с координатами 
+
+                switch (this.direction) {//ретёрн нового объекта с координатами направления
+                    case 'up':
+                        return { x: firstPoint.x, y: firstPoint.y - 1 };
+                    case 'right':
+                        return { x: firstPoint.x + 1, y: firstPoint.y };
+                    case 'down':
+                        return { x: firstPoint.x, y: firstPoint.y + 1 };
+                    case 'left':
+                        return { x: firstPoint.x - 1, y: firstPoint.y };
+                }
+            },
+        };
+
+        const food = {//координаты еды
+            x: null,
+            y: null,
+
+            getCoordinates() {//гетеры и сетеры для еды
+                return {
+                    x: this.x,
+                    y: this.y,
+                };
+            },
+
+            setCoordinates(point) {
+                this.x = point.x;
+                this.y = point.y;
+            },
+
+            isOnPoint(point) {//проверяет точку еды, координату еды и не съели ли мы сами себя
+                return this.x === point.x && this.y === point.y;
+            },
+        };
+
+        const trap = {//координаты ловушки
+            x: null,
+            y: null,
+
+            getCoordinates() {//гетеры и сетеры для ловушки
+                return {
+                    x: this.x,
+                    y: this.y,
+                };
+            },
+
+            setCoordinates(point) {
+                this.x = point.x;
+                this.y = point.y;
+            },
+
+            isOnPoint(point) {//проверяет точку ловушки, координату еды и не съели ли мы сами себя
+                return this.x === point.x && this.y === point.y;
+            },
+        };
+
+        const trap2 = {//координаты ловушки
+            x: null,
+            y: null,
+
+            getCoordinates() {//гетеры и сетеры для ловушки
+                return {
+                    x: this.x,
+                    y: this.y,
+                };
+            },
+
+            setCoordinates(point) {
+                this.x = point.x;
+                this.y = point.y;
+            },
+
+            isOnPoint(point) {//проверяет точку ловушки, координату еды и не съели ли мы сами себя
+                return this.x === point.x && this.y === point.y;
+            },
+        };
+
+        const status = {      //Управление статусами игры
+            condition: null,
+
+            setPlaying() {
+                this.condition = 'playing';
+            },
+
+            setStopped() {
+                this.condition = 'stopped';
+            },
+
+            setFinished() {
+                this.condition = 'finished';
+            },
+
+            isPlaying() {
+                return this.condition === 'playing';
+            },
+
+            isStopped() {
+                return this.condition === 'stopped';
+            },
+        };
+
+        const game = {//сама игра
+            config,
+            map,
+            snake,
+            food,
+            trap,
+            trap2,
+            status,
+            tickInterval: null,//Приостановка игры с сохранением данных
+
+            init(userSettings = {}) {//Применение настроек пользователя
+                this.config.init(userSettings);
+                const validation = this.config.validate();//Валидируем наши установленные значения
+
+                if (!validation.isValid) {
+                    for (const err of validation.errors) {
+                        console.log(err);
+                    }
+                    return;
+                }
+
+                this.map.init(this.config.getRowsCount(), this.config.getColsCount());//Инициализируем карту
+
+                this.setEventHandlers();
+                this.reset();
+            },
+
+            setEventHandlers() {   //события для кликов кнопок и стрелочек, кнопки обработчиков событий
+                document.querySelector('#playButton').addEventListener('click', () => {
+                    this.playClickHandler();
+                });
+                document.querySelector('#newGameButton').addEventListener('click', () => {
+                    this.newGameClickHandler();
+                });
+                document.addEventListener('keydown', (event) => this.keyDownHandler(event));//Обработка нажатия клавиш
+            },
+
+            playClickHandler() {//Игра переводится в режим "стоп"
+                if (this.status.isPlaying()) {//Проверка состояния
+                    this.stop();
+                } else if (this.status.isStopped()) {//Если игра остановлена
+                    this.play();//то старт
+                }
+            },
+
+            newGameClickHandler() {
+                this.reset();
+            },
+
+            keyDownHandler(event) {//Работа с кнопка
+                if (!this.status.isPlaying()) return;//Если не в игре, просто ретурн
+
+                const direction = this.getDirectionByCode(event.code);//змейка не получит невалидное направление
+
+                if (this.canSetDirection(direction)) this.snake.setDirection(direction);//меняется направление змейки
+            },
+
+            getDirectionByCode(code) {//кнопки   
+                switch (code) {
+                    case 'KeyW':
+                    case 'ArrowUp':
+                        return 'up';
+                    case 'KeyD':
+                    case 'ArrowRight':
+                        return 'right';
+                    case 'KeyS':
+                    case 'ArrowDown':
+                        return 'down';
+                    case 'KeyA':
+                    case 'ArrowLeft':
+                        return 'left';
+                }
+            },
+
+            canSetDirection(direction) {
+                const lastStepDirection = this.snake.getLastStepDirection();
+
+                return direction === 'up' && lastStepDirection !== 'down' ||
+                    direction === 'right' && lastStepDirection !== 'left' ||
+                    direction === 'down' && lastStepDirection !== 'up' ||
+                    direction === 'left' && lastStepDirection !== 'right';
+            },
+
+            reset() {
+                this.stop();
+                this.snake.init(this.getStartSnakeBody(), 'up');//стартовое направление змейки, по умолч. вверх
+                this.food.setCoordinates(this.getRandomFreeCoordinates());//генерирует произвольную точку с едой
+                this.trap.setCoordinates(this.getRandomFreeCoordinates());
+                this.trap2.setCoordinates(this.getRandomFreeCoordinates());
+                write("score", 'Очки: 0');
+                this.render();
+            },
+
+            getStartSnakeBody() {//змейка генерируется по центру карты
+                return [
+                    {
+                        x: Math.floor(this.config.getColsCount() / 2),
+                        y: Math.floor(this.config.getRowsCount() / 2),
+                    },
+                ];
+            },
+
+            getRandomFreeCoordinates() {
+                const exclude = [this.food.getCoordinates(), ...this.snake.getBody()];//массив с координатами еды
+                //... спред-оператор, раскладывает массив в другой массив, получится плоский массив
+                while (true) {//генератор координат через бесконечный цикл
+                    const rndPoint = {
+                        x: Math.floor(Math.random() * this.config.getColsCount()),
+                        y: Math.floor(Math.random() * this.config.getRowsCount()),
+                    };
+
+                    if (!exclude.some((exPoint) => rndPoint.x === exPoint.x && rndPoint.y === exPoint.y)) return rndPoint;
+                }
+            },
+
+            render() {//рендер ожидает массив с точками змейки, точкой еды, точкой препятствия!!!
+                this.map.render(this.snake.getBody(), this.food.getCoordinates(), this.trap.getCoordinates(), this.trap2.getCoordinates());
+            },
+
+            play() {
+                this.status.setPlaying();
+                this.tickInterval = setInterval(() => {
+                    this.tickHandler();
+                }, 1000 / this.config.getSpeed());
+                this.setPlayButton('Стоп');
+            },
+
+            stop() {
+                this.status.setStopped();
+                clearInterval(this.tickInterval);
+                this.setPlayButton('Старт');
+            },
+
+            finish() {
+                this.status.setFinished();
+                clearInterval(this.tickInterval);
+                this.setPlayButton('Игра закончена', true);
+            },
+            finishWin() {
+                this.status.setFinished();
+                clearInterval(this.tickInterval);
+                this.setPlayButton('Вы выйграли!!!', true);
+            },
+            setPlayButton(text, isDisabled) {//метод когда после финиш кнопка блокируется
+                const playButton = document.querySelector('#playButton');
+
+                playButton.textContent = text;
+
+                isDisabled
+                    ? playButton.classList.add('disabled')
+                    : playButton.classList.remove('disabled');
+            },
+
+            tickHandler() {//основной процесс, который управляет игрой!!!!!!!!!!
+                if (!this.canMakeStep()) return this.finish(); // на уроке забыли return
+                if (this.trap.isOnPoint(this.snake.getNextStepHeadPoint()) || this.trap2.isOnPoint(this.snake.getNextStepHeadPoint()))
+                    this.finish();
+                if (this.food.isOnPoint(this.snake.getNextStepHeadPoint())) {//если змейка на еде
+                    this.snake.growUp();//растим змейку
+                    score = this.snake.getBody().length - 1;
+                    write("score", 'Очки: ' + score);
+                    this.food.setCoordinates(this.getRandomFreeCoordinates());//установка новой еды
+                    this.trap.setCoordinates(this.getRandomFreeCoordinates());//установка нового препядствия
+                    this.trap2.setCoordinates(this.getRandomFreeCoordinates());//установка нового препядствия
+                    if (this.isGameWon()) {
+                        this.finishWin();//если в режиме победителя, то финиш
+                    }
+                }
+                this.snake.makeStep();//змейка делает следующий шаг
+                this.render();//снова отрисовка рендером
+            },
+
+            canMakeStep() {
+                const nextHeadPoint = this.snake.getNextStepHeadPoint();
+
+                return !this.snake.isOnPoint(nextHeadPoint) &&
+                    nextHeadPoint.x < this.config.getColsCount() &&
+                    nextHeadPoint.y < this.config.getRowsCount() &&
+                    nextHeadPoint.x >= 0 &&
+                    nextHeadPoint.y >= 0;
+            },
+
+            isGameWon() {
+                return this.snake.getBody().length > this.config.getWinFoodCount();//условия выйгрыша
+            }
+        };
+
+        game.init();
+
+    </script>
+</body>
+
+</html>
