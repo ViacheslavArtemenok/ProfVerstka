@@ -1,0 +1,1560 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+
+$colorselect: #F16D7F
+$colorhover: #e05c6e
+$colorheadback: #222222
+$colormenutext: #6f6e6e
+$colormainback: #ffffff
+$colorbackpromo: #f1e4e6
+$colortittletext: #000000
+$colorh3text: #9f9f9f
+$colorbackproduct: #f3eded
+$colorproducthover: rgb(58, 56, 56)
+$colorproducttext: #5d5d5d
+$colorbtnborder: #ff6a6a
+$colorbtntext: #f26376
+$colorfooterup: #222224
+$colorfootertext: #fbfbfb
+$colorfootinput: #e1e1e1
+$colormaintittlecat: #f8f3f4
+$colorway: #636363
+$colorfilterhover: #ef5b70
+$filtermenuborder: #ebebeb
+$colorprdback: #f7f7f7
+$colorboxcollection: #eaeaea
+$colorcartbtn: #a4a4a4
+$colorsearchtext: #b1b1b1
+$colorcartfinaltext: #4a4a4a
+$colorcheckoutbox: #f5f3f3
+
+=varboxshadow
+    box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21)
+*
+    margin: 0px
+    padding: 0px
+    font-family: "Lato"
+    font-style: normal
+    font-weight: normal
+
+a
+    text-decoration: none
+
+ul
+    list-style-type: none
+
+summary
+    list-style-type: none
+    outline: none
+input
+    outline: none
+.error-msg
+    padding: 30px 20px
+    background-color: red
+    color: white
+    position: relative
+
+.error-block
+    background-color: rgba(0, 0, 0, 0.5)
+    justify-content: center
+    display: flex
+    position: absolute
+    top: 0
+    width: 100%
+    height: 100%
+    align-items: center
+
+.pink
+    color: $colorselect
+
+.header_up
+    background-color: $colorheadback
+    height: 74px
+
+.wrap_head
+    max-width: 1204px
+    margin: 0px auto
+    height: 100%
+    display: flex
+    justify-content: space-between
+    box-sizing: border-box
+    padding: 0px 32px
+    @media (max-width: 760px)
+        padding: 0px 16px
+.logo_left
+    display: flex
+    align-items: center
+
+.logo_right
+    position: relative
+    display: flex
+    align-items: center
+    z-index: 150
+.logo_right_checkbox_menu
+    visibility: hidden
+.logo_svg
+    transition: fill 0.3s
+.logo_left_img
+    margin: 0px 40px 0px 0px
+    &:hover .logo_svg
+        fill: $colorselect
+
+.logo_main
+    transition: transform ease 0.3s
+    &:hover
+        transform: rotate(30deg) translate(0px, -3px)
+
+.logo_right_img
+    margin: 0px 0px 0px 32px
+    &:hover .logo_svg
+        fill: $colorselect
+    @media (max-width: 760px)
+        display: none
+.menu
+    @media (max-width: 760px)
+        margin: 0px 0px 0px 32px
+        display: block
+#menu_main:checked~
+    .list_box
+        display: flex
+
+.list_box
+    position: absolute
+    top: 74px
+    right: -232px
+    display: none
+    flex-direction: column
+    +varboxshadow
+    background-color: $colormainback
+    padding: 16px 33px 168px
+    box-sizing: border-box
+    width: max-content
+    min-width: 232px
+    transition: transform ease 0.3s
+    @media (max-width: 1560px)
+        right: -32px
+        padding: 16px 33px 33px
+
+.close
+    align-self: flex-end
+    transition: transform 0.2s
+    &:hover
+        transform: scale(1.25)
+
+.list_tittle
+    font-weight: bold
+    font-size: 14px
+    line-height: 4
+    color: $colortittletext
+    text-transform: uppercase
+
+.pink_list
+    font-size: 14px
+    line-height: 2
+    color: $colorselect
+    text-transform: uppercase
+    width: max-content
+    transition: font-weight 0.3s
+    &:hover
+        font-weight: bold
+
+.hide_tittle
+    display: none
+    @media (max-width: 760px)
+        display: block
+.menu_list
+    font-size: 14px
+    line-height: 2
+    color: $colormenutext
+    margin: 0px 0px 0px 22px
+    &:hover
+        color: $colorselect
+.hideline
+    display: none
+.hideback
+    display: block
+.hidecathref
+    display: block
+.back
+    background-color: $colorbackpromo
+
+.wrap_promo
+    display: flex
+    align-items: center
+    width: 100%
+    max-width: 1602px
+    margin: 0px auto
+    @media (max-width: 760px)
+        justify-content: center
+
+.img_promo
+    width: 50%
+    max-width: 800px
+    height: auto
+    @media (max-width: 760px)
+        display: none
+
+.promo_tittle
+    width: 50%
+    margin: 0px 0px 0px 4%
+    border-left: 12px solid $colorselect
+    box-sizing: border-box
+    padding-left: 16px
+    @media (max-width: 760px)
+        margin: 148px 0px
+        width: 262px
+
+.promo_h1
+    font-weight: 900
+    font-size: 48px
+    line-height: 58px
+    text-transform: uppercase
+    @media (max-width: 1155px)
+        font-size: 44px
+        line-height: 52px
+    @media (max-width: 760px)
+        font-size: 38px
+        line-height: 46px
+
+.promo_h3
+    font-weight: 700
+    font-size: 32px
+    line-height: 38px
+    text-transform: uppercase
+    @media (max-width: 1155px)
+        font-size: 24px
+        line-height: 28px
+    @media (max-width: 760px)
+        font-size: 20px
+        line-height: 24px
+
+.wrap
+    max-width: 1140px
+    margin: 64px auto 96px
+    @media (max-width: 1155px)
+        margin: 20px auto 154px
+        box-sizing: border-box
+        padding: 0px 16px
+    @media (max-width: 760px)
+        margin: 64px auto
+.block_items
+    display: flex
+    justify-content: space-between
+    gap: 20px
+    @media (max-width: 760px)
+        justify-content: center
+        flex-direction: column
+        align-items: center
+        gap: 32px
+
+.item_box
+    position: relative
+    text-align: center
+    max-width: 360px
+    background: rgb(33, 22, 22)
+    &:hover .img_item
+        opacity: 0.5
+
+.img_item
+    width: 100%
+    height: auto
+    opacity: 0.3
+    margin: 0px 0px -2px
+    transition: opacity 0.4s
+
+.item_text
+    position: absolute
+    top: 0px
+    height: 100%
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.item_h3
+    font-weight: 400
+    font-size: 16px
+    line-height: 19px
+    color: $colormainback
+    text-transform: uppercase
+    margin: auto auto 0px
+
+.item_h1
+    font-weight: 700
+    font-size: 24px
+    line-height: 29px
+    color: $colorselect
+    text-transform: uppercase
+    margin: 0px auto auto
+
+.item_box_long
+    margin: 30px 0px 0px
+    background-image: url(../img/long.jpg)
+    background-position: center
+    background-size: cover
+    @media (max-width: 1155px)
+        margin: 20px 0px 0px
+    @media (max-width: 760px)
+        margin: 32px auto 0px
+        width: 100%
+        max-width: 360px
+
+.item_long
+    text-align: center
+    background-color: rgba(33, 22, 22, 0.7)
+    box-sizing: border-box
+    padding: 64px 0px
+    width: 100%
+    @media (max-width: 1155px)
+        padding: 32px 0px
+    @media (max-width: 760px)
+        padding: 30px 0px
+
+.tittle_product
+    margin: 0px auto 48px
+    width: max-content
+    text-align: center
+    @media (max-width: 1155px)
+        margin: 0px auto 72px
+    @media (max-width: 760px)
+        width: 100%
+        box-sizing: border-box
+        padding: 0px 16px
+        margin: 0px auto 64px
+    &_h1
+        font-size: 30px
+        line-height: 36px
+        color: $colorheadback
+
+    &_h3
+        font-size: 14px
+        line-height: 17px
+        color: $colorh3text
+
+.wrap_product
+    max-width: 1140px
+    margin: 0px auto
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    gap: 30px
+    @media (max-width: 1155px)
+        max-width: 1112px
+        gap: 16px
+        box-sizing: border-box
+        padding: 0px 16px
+
+.product_item
+    width: 95%
+    max-width: 360px
+    background-color: $colorbackproduct
+    margin: 0px 0px 0px
+    align-self: stretch
+    @media (max-width: 1155px)
+        max-width: 350px
+        &:last-child
+            display: none
+.box_pict
+    background-color: $colorproducthover
+    position: relative
+    &:hover .pict_img
+        opacity: 0.14
+        transform: scale(1.006)
+    &:hover .add_to_cart
+        display: flex
+
+.pict_img
+    width: 100%
+    height: auto
+    box-sizing: border-box
+    padding: 0px
+    margin: 0px 0px -4px
+    transition: transform ease-out 0.4s, opacity ease-out 0.4s
+
+.bord_add_to_cart
+    position: absolute
+    top: 0px
+    width: 100%
+    height: 100%
+    background: transparent
+    display: flex
+    justify-content: center
+    align-items: center
+
+.add_to_cart
+    display: none
+    justify-content: space-between
+    align-items: center
+    width: 138px
+    box-sizing: border-box
+    padding: 0px 13px
+    border: 1px solid $colormainback
+
+    &_img
+        width: 26px
+        height: auto
+        margin: 11px 0px 8px
+
+    &_text
+        font-size: 14px
+        line-height: 17px
+        color: $colormainback
+
+.pd_tittle
+    margin: 25px 0px 0px 18px
+    font-size: 13px
+    line-height: 16px
+    color: $colortittletext
+
+.pd_text
+    margin: 13px 28px 0px 18px
+    font-weight: 300
+    font-size: 14px
+    line-height: 17px
+    color: $colorproducttext
+
+.pd_price
+    margin: 18px 0px 20px 18px
+    font-size: 16px
+    line-height: 19px
+    color: $colorselect
+
+.box_btn
+    margin: 48px auto 96px
+    display: flex
+    justify-content: center
+    @media (max-width: 1200px)
+        margin: 32px auto 64px
+    @media (max-width: 760px)
+        margin: 42px auto 96px
+
+.btn
+    box-sizing: border-box
+    padding: 14px 38px
+    border: 1px solid $colorbtnborder
+    font-size: 16px
+    line-height: 19px
+    color: $colorbtntext
+    transition: all 0.4s
+    &:hover
+        background-color: $colorselect
+        color: $colormainback
+
+.footer_up
+    background-color: $colorfooterup
+
+.wrap_foot
+    max-width: 1140px
+    margin: 0px auto
+    box-sizing: border-box
+    padding: 104px 0px
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    @media (max-width: 1200px)
+        flex-direction: column
+        justify-content: row
+        align-items: center
+        gap: 48px
+        padding: 48px 0px 64px
+    @media (max-width: 760px)
+        padding: 48px 0px 80px
+
+.foot_item
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    max-width: 360px
+
+.foot_img
+    width: 40px
+    height: auto
+
+.foot_h3
+    font-size: 20px
+    line-height: 24px
+    color: $colorfootertext
+    &_mrg1
+        margin: 28px 0px 28px
+    &_mrg2
+        margin: 18px 0px 28px
+    &_mrg3
+        margin: 30px 0px 28px
+
+.foot_p
+    font-weight: 300
+    font-size: 14px
+    line-height: 17px
+    text-align: center
+    color: $colorfootertext
+    margin: 16px 0px
+
+.footer_middle
+    background-color: white
+    background-image: url(../img/sea.png)
+    background-size: cover
+    background-position: left
+    background-repeat: no-repeat
+
+.wrap_foot_middle
+    max-width: 1140px
+    margin: 0px auto
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    box-sizing: border-box
+    padding: 96px 0px 106px
+    @media (max-width: 1200px)
+        flex-direction: column
+        justify-content: row
+        align-items: center
+        gap: 48px
+        padding: 64px 0px 220px
+    @media (max-width: 760px)
+        padding: 64px 0px 120px
+        gap: 60px
+.foot_item_middle
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 360px
+    @media (max-width: 390px)
+        box-sizing: border-box
+        padding: 0px 16px
+        width: 100%
+.foot_img_middle
+    width: 96px
+    height: auto
+
+.foot_p_middle
+    font-weight: 400px
+    font-size: 20px
+    line-height: 24px
+    color: $colorfooterup
+    margin: 30px 0px 0px
+    text-align: center
+    @media (max-width: 760px)
+        font-size: 18px
+        line-height: 22px
+.f_italic
+    font-style: italic
+
+.foot_h3_right
+    font-weight: 700
+    font-size: 24px
+    line-height: 40px
+    text-align: center
+    color: $colorfooterup
+    text-transform: uppercase
+    @media (max-width: 760px)
+        font-size: 24px
+        line-height: 36px
+
+.foot_p_right
+    font-weight: 400
+    font-size: 18px
+    line-height: 30px
+    text-align: center
+    color: $colorfooterup
+    text-transform: uppercase
+    @media (max-width: 760px)
+        font-size: 14px
+        line-height: 22px
+.area
+    display: flex
+    height: 50px
+    width: 100%
+    margin: 32px 0px 0px
+
+.input_foot
+    border: transparent
+    flex-grow: 2
+    border-radius: 50px 0px 0px 50px
+    box-sizing: border-box
+    padding: 0px 22px 0px 22px
+    background: $colorfootinput
+
+.btn_foot
+    border: transparent
+    font-size: 14px
+    line-height: 17px
+    text-align: center
+    background: $colorselect
+    color: $colormainback
+    box-sizing: border-box
+    flex-grow: 1
+    border-radius: 0px 50px 50px 0px
+    transition: all 0.3s
+    &:hover
+        background-color: $colorhover
+
+.footer_lower
+    background-color: $colorfooterup
+
+.wrap_foot_lower
+    max-width: 1204px
+    margin: 0px auto
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    padding: 24px 32px
+    @media (max-width: 760px)
+        display: flex
+        align-items: center
+        flex-direction: column-reverse
+        gap: 40px
+        padding: 42px 0px 10px
+
+.rights
+    font-size: 16px
+    line-height: 19px
+    color: $colorfootertext
+
+.lower_mess
+    display: flex
+
+.mess_box
+    background-color: $colormainback
+    box-sizing: border-box
+    width: 32px
+    height: 32px
+    margin: 0px 4px
+    transition: all 0.3s
+    &:hover
+        background-color: $colorselect
+
+    &:hover .mess_img
+        fill: white
+
+.pad_1
+    padding: 8px 11px
+
+.pad_2
+    padding: 8px 8px
+
+.pad_3
+    padding: 8px 9px
+
+.pad_4
+    padding: 9px 7px
+
+.mess_img
+    width: 100%
+    height: auto
+    transition: all 0.3s
+.details_search
+    position: relative
+
+.area_search
+    display: flex
+    position: absolute
+    top: -10px
+    left: 80px
+    z-index: 1000
+    @media (max-width: 760px)
+        top: 52px
+        left: -114px
+
+.input_search
+    border: transparent
+    flex-grow: 2
+    box-sizing: border-box
+    padding: 14px 22px
+    background: $colorfootinput
+
+.btn_search
+    border: transparent
+    font-size: 14px
+    line-height: 17px
+    text-align: center
+    background: $colorselect
+    color: $colormainback
+    box-sizing: border-box
+    padding: 14px 22px
+    flex-grow: 1
+    transition: 0.3s
+    &:hover
+        background-color: $colorhover
+
+/*CATALOG/////////////////////////////////////////////////////////////////////////////////////////////*/
+.main_tittle_box
+    background: $colormaintittlecat
+
+.main_tittle
+    display: flex
+    justify-content: space-between
+    align-items: center
+    max-width: 1172px
+    margin: 0px auto
+    box-sizing: border-box
+    padding: 60px 16px
+    @media (max-width: 760px)
+        justify-content: center
+        flex-direction: column
+        gap: 32px
+        padding: 24px 16px 46px
+
+.pink_tittle
+    font-size: 24px
+    line-height: 29px
+    color: $colorselect
+    text-transform: uppercase
+
+.way
+    display: flex
+
+    &_text
+        font-weight: 300
+        font-size: 14px
+        line-height: 17px
+        color: $colorway
+        text-transform: uppercase
+    &_text:last-child
+        color: $colorselect
+        font-weight: 700
+    &_text:not(:last-child)::after
+        content: (" / ")
+    &_text:not(:last-child):hover
+        color: $colorselect
+    &_text:not(:first-child)::before
+        content: ("_")
+        color: transparent
+
+.product_menu
+    position: relative
+    width: 100%
+    max-width: 1140px
+    margin: 50px auto 64px
+    display: flex
+    align-items: center
+    @media (max-width: 760px)
+        margin: 24px auto 42px
+.filter_click
+    display: flex
+    align-items: center
+    gap: 11px
+    font-weight: 600
+    font-size: 14px
+    line-height: 17px
+    color: $colortittletext
+    text-transform: uppercase
+    margin: 0px 0px 16px
+.filter_text
+    display: inline-block
+    @media (max-width: 760px)
+        display: none
+.filter_svg
+    fill: $colortittletext
+    @media (max-width: 760px)
+        width: 37px
+        height: 25px
+.filter_box
+    position: absolute
+    top: -13px
+    left: 0px
+    display: flex
+    flex-direction: column
+    box-sizing: border-box
+    padding: 13px 16px
+    background-color: transparent
+    width: 360px
+    z-index: 100
+    &[open]
+        +varboxshadow
+        background-color: $colormainback
+    &[open] .filter_text
+        display: block
+        color: $colorfilterhover
+    &[open] .filter_svg
+        width: 15px
+        height: 10px
+        fill: $colorfilterhover
+    @media (max-width: 760px)
+        padding: 13px 0px 0px 8px
+        width: 48px
+        &[open]
+            width: 360px
+            padding: 13px 16px
+    @media (max-width: 420px)
+        padding: 13px 0px 0px 8px
+        width: 48px
+        &[open]
+            width: 302px
+            padding: 13px 8px
+
+.categ_box
+    display: flex
+    flex-direction: column
+    &[open] .categ_text
+        color: $colorfilterhover
+    &_margin
+        margin: 18px 0px -1px 0px
+
+.categ_item
+    font-size: 14px
+    line-height: 2
+    color: $colormenutext
+    font-weight: normal
+    text-transform: none
+    margin: 0px 0px 0px 34px
+    &:hover
+        color: $colorfilterhover
+
+.categ
+    border-bottom: 1px solid $filtermenuborder
+    box-sizing: border-box
+    padding: 11px 0px 10px
+
+.categ_text
+    font-size: 14px
+    line-height: 17px
+    color: $colormenutext
+    text-transform: uppercase
+    border-left: 5px solid $colorfilterhover
+    padding: 11px
+
+.product_menu_right
+    position: absolute
+    top: 0px
+    left: 390px
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    font-size: 14px
+    line-height: 17px
+    color: $colormenutext
+    z-index: 5
+    height: max-content
+    @media (max-width: 760px)
+        top: 0px
+        left: 120px
+        justify-content: flex-end
+        font-size: 12px
+        line-height: 14px
+        width: max-content
+        gap: 24px
+    @media (max-width: 420px)
+        left: 60px
+        gap: 4px
+
+.trending
+    width: 150px
+    @media (max-width: 760px)
+        width: max-content
+.size
+    width: 77px
+    @media (max-width: 760px)
+        width: max-content
+    @media (max-width: 760px)
+        width: 43px
+.price
+    width: 140px
+    @media (max-width: 760px)
+        width: max-content
+.input_box
+    display: flex
+    flex-direction: column
+    font-weight: normal
+    font-size: 14px
+    line-height: 1.5
+    color: $colormenutext
+    background-color: $colormainback
+    +varboxshadow
+    box-sizing: border-box
+    padding: 10px 30px 10px 10px
+    width: max-content
+    @media (max-width: 760px)
+        padding: 10px 5px
+
+.check_box
+    opacity: 0.3
+
+.pages
+    margin: 48px auto 96px
+    box-sizing: border-box
+    padding: 12px 16px
+    border: 1px solid $filtermenuborder
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    color: $colorfilterhover
+    width: 100%
+    max-width: 284px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    @media (max-width: 760px)
+        margin: 40px auto 64px
+
+.number_page_ch
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    color: $colorfilterhover
+    transition: all 0.05s
+    &:active
+        transform: scale(1.06)
+
+.number_page
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    color: $filtermenuborder
+    transition: all 0.05s
+    &:active
+        transform: scale(1.06)
+
+/*PRODUCT//////////////////////////////////////////////////////////////////*/
+.prd_back
+    background-color: $colorprdback
+    box-sizing: border-box
+    padding: 12px 0px 42px
+
+.prd_wrap
+    width: 100%
+    height: 624px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-image: url(img/product_w1_big.jpg)
+    background-position: center
+    background-size: contain
+    background-repeat: no-repeat
+
+.prd_svg
+    background-color: rgba(42, 42, 42, 0.15)
+    box-sizing: border-box
+    width: 47px
+    height: 47px
+    padding: 13px 13px 13px 17px
+    transition: transform 0.05s
+    &:active
+        transform: scale(0.98)
+    &:hover .prd_svg_img
+        fill: $colorselect
+    &_img
+        height: 100%
+        width: auto
+        transition: all 0.3s
+
+.box_collection
+    width: 100%
+    max-width: 1140px
+    border: 1px solid $colorboxcollection
+    box-sizing: border-box
+    padding: 64px 0px
+    margin: -63px auto 130px
+    background-color: $colormainback
+    display: flex
+    flex-direction: column
+    align-items: center
+    position: relative
+
+.collection_pinc
+    font-weight: 300
+    font-size: 14px
+    line-height: 17px
+    color: $colorselect
+    text-transform: uppercase
+    margin: 0px 0px 12px
+
+.collection_tittle
+    font-weight: 300
+    font-size: 18px
+    line-height: 22px
+    color: #4d4d4d
+    text-transform: uppercase
+    margin: 12px 0px 48px
+
+.collection_text
+    font-weight: 300
+    font-size: 14px
+    line-height: 17px
+    text-align: center
+    color: #5e5e5e
+    margin: 0px 0px 48px
+    width: max-content
+    max-width: 554px
+    @media (max-width: 760px)
+        max-width: 320px
+.collection_price
+    font-weight: 300
+    font-size: 24px
+    line-height: 29px
+    color: $colorfilterhover
+    text-align: center
+    width: 100%
+    max-width: 640px
+    box-sizing: border-box
+    padding: 0px 0px 64px
+    border-bottom: 1px solid $colorboxcollection
+    @media (max-width: 760px)
+        max-width: 174px
+.collection_menu
+    position: absolute
+    top: 422px
+    margin: 0px auto
+    z-index: 10
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    gap: 22px
+    height: max-content
+
+.collection_select
+    min-width: max-content
+    display: flex
+    flex-direction: column
+    align-items: center
+    font-weight: normal
+    font-size: 14px
+    line-height: 17px
+    color: #6F6E6E
+    @media (max-width: 760px)
+        font-size: 10px
+        line-height: 12px
+.list_summary
+    display: flex
+    align-items: center
+    gap: 8px
+.collection_add_box
+    border: 1px solid $colorbtnborder
+    background-color: $colormainback
+    display: flex
+    align-items: flex-start
+    width: max-content
+    box-sizing: border-box
+    padding: 14px 56px 8px 24px
+    margin: 132px 0px 0px
+    transition: all 0.4s
+    &:hover
+        background-color: $colorbtnborder
+    &:hover .collection_add_svg
+        fill: $colormainback
+    &:hover .collection_add_text
+        color: $colormainback
+
+.collection_add_svg
+    width: 100%
+    height: auto
+    margin: 0px 0px 0px 24px
+
+.collection_add_text
+    font-weight: normal
+    font-size: 16px
+    line-height: 19px
+    color: $colorbtntext
+    margin: 0px 0px 0px 24px
+
+.under
+    margin: 128px 0px 0px
+
+/*CART/////////////////////////////////////////////////////////////////////////////////////////*/
+.main_tittle_mini
+    max-width: 1172px
+    margin: 0px auto
+    box-sizing: border-box
+    padding: 60px 16px
+    @media (max-width: 760px)
+        text-align: center
+        padding: 60px 0px
+.wrap_cart
+    margin: 96px auto 0px
+    width: 100%
+    max-width: 1172px
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    box-sizing: border-box
+    padding: 0px 16px
+    @media (max-width: 1155px)
+        margin: 60px auto 0px
+        flex-direction: column
+        justify-content: center
+        align-items: center
+    @media (max-width: 760px)
+        margin: 40px auto 0px
+        padding: 0px 8px
+    @media (max-width: 370px)
+        padding: 0px
+
+.cart_change
+    display: flex
+    flex-direction: column
+    align-items: center
+    @media (max-width: 1155px)
+        width: 100%
+.img_cart
+    height: auto
+    width: 100%
+    max-width: 262px
+    @media (max-width: 760px)
+        width: 100%
+        max-width: 144px
+    @media (max-width: 370px)
+        width: 100%
+        max-width: 114px
+
+.cart_change_item
+    display: flex
+    box-shadow: 17px 19px 24px rgba(0, 0, 0, 0.13)
+    width: 652px
+    box-sizing: border-box
+    margin: 0px 0px 40px
+    @media (max-width: 1155px)
+        width: 100%
+        max-width: 734px
+    @media (max-width: 760px)
+        width: 100%
+        max-width: 358px
+        margin: 0px 0px 30px
+    @media (max-width: 370px)
+        width: 100%
+        max-width: 318px
+    &_info
+        position: relative
+        box-sizing: border-box
+        padding: 22px 0px 0px 32px
+        width: 100%
+        @media (max-width: 760px)
+            padding: 14px 0px 0px 16px
+.cart_close_hide
+    position: absolute
+    right: 0px
+    bottom: 0px
+    visibility: hidden
+
+#cart_hidden1:checked~
+    .cart_change_item1
+        display: none
+
+#cart_hidden2:checked~
+    .cart_change_item2
+        display: none
+
+.cart_close
+    position: absolute
+    top: 28px
+    right: 22px
+    transition: transform 0.1s
+    &:hover
+        transform: scale(1.1)
+    @media (max-width: 760px)
+        top: 17px
+        right: 12px
+        width: 9.88px
+        height: 11.06px
+
+.cart_tittle
+    font-weight: normal
+    font-size: 24px
+    line-height: 29px
+    text-transform: uppercase
+    color: $colorheadback
+    margin: 0px 0px 0px 0px
+    @media (max-width: 760px)
+        font-weight: normal
+        font-size: 16px
+        line-height: 19px
+
+    &_info
+        display: flex
+        flex-direction: column
+        gap: 6px
+        font-weight: 400
+        font-size: 22px
+        line-height: 26px
+        color: #575757
+        margin: 42px 0px 62px
+        @media (max-width: 760px)
+            font-weight: normal
+            font-size: 14px
+            line-height: 17px
+            margin: 26px 0px 38px
+        @media (max-width: 370px)
+            margin: 6px 0px 10px
+
+.quant
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    width: max-content
+    @media (max-width: 760px)
+        width: 112px
+    &_item
+        border: 1px solid #EAEAEA
+        box-sizing:
+        padding: 0px 16px
+    &_sum
+        position: relative
+        font-weight: 400
+        font-size: 18px
+        line-height: 22px
+        color: #65656500
+        border: 1px solid $colorboxcollection
+        width: 44px
+        box-sizing: border-box
+        padding: 1px 1px 1px 16px
+        @media (max-width: 760px)
+            padding: 1px 1px 1px 7px
+            font-weight: normal
+            font-size: 10px
+            line-height: 12px
+            width: 24px
+
+        &_input
+            position: absolute
+            top: 0px
+            left: 0px
+            font-weight: 400
+            font-size: 18px
+            line-height: 22px
+            color: #656565
+            width: 60px
+            background: #ffffff00
+            border: 1px transparent
+            box-sizing: border-box
+            padding: 1px 1px 1px 16px
+            @media (max-width: 760px)
+                padding: 1px 1px 1px 7px
+                font-weight: normal
+                font-size: 10px
+                line-height: 12px
+                width: 40px
+.cart_btns
+    display: flex
+    justify-content: space-between
+    width: 100%
+    margin: 32px 0px 0px
+    @media (max-width: 1155px)
+        justify-content: center
+        gap: 48px
+        margin: 22px 0px 0px
+    @media (max-width: 760px)
+        gap: 10px
+        margin: 0px
+    @media (max-width: 370px)
+        gap: 4px
+
+.cart_btn
+    border: 1px solid $colorcartbtn
+    background-color: $colormainback
+    font-weight: 300
+    font-size: 14px
+    line-height: 17px
+    text-transform: uppercase
+    color: $colortittletext
+    box-sizing: border-box
+    padding: 16px 40px
+    transition: background-color 0.3s
+    @media (max-width: 760px)
+        padding: 8px 16px
+        font-weight: normal
+        font-size: 12px
+        line-height: 14px
+    @media (max-width: 370px)
+        padding: 2px 4px
+    &:hover
+        background-color: $colorcheckoutbox
+
+.cart_form_box
+    display: flex
+    flex-direction: column
+    width: 50%
+    max-width: 358px
+    @media (max-width: 1155px)
+        flex-direction: row
+        justify-content: space-between
+        width: 100%
+        max-width: 736px
+        margin: 64px 0px 0px
+        gap: 16px
+    @media (max-width: 760px)
+        margin: 48px 0px 0px
+        flex-direction: column
+        align-items: center
+        gap: 10px
+    @media (max-width: 370px)
+        box-sizing: border-box
+        padding: 0px 2px
+
+    &_left
+        display: flex
+        flex-direction: column
+        width: 100%
+        max-width: 358px
+        @media (max-width: 1155px)
+            width: 50%
+            max-width: 360px
+        @media (max-width: 760px)
+            width: 100%
+
+.cart_form_tittle
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    text-transform: uppercase
+    color: $colorheadback
+    margin: 28px 0px 0px
+    @media (max-width: 1155px)
+        margin: 0px
+.cart_form_input
+    border: 1px solid $colorcartbtn
+    box-sizing: border-box
+    padding: 12px 16px 16px 16px
+    margin: 20px 0px 0px
+
+.cart_form_btn
+    border: 1px solid $colorcartbtn
+    font-weight: 300
+    font-size: 11px
+    line-height: 13px
+    text-transform: uppercase
+    color: $colorcartfinaltext
+    box-sizing: border-box
+    padding: 10px 14px 12px 14px
+    width: max-content
+    background-color: $colormainback
+    margin: 24px 0px 58px
+    transition: background-color 0.3s
+    @media (max-width: 1155px)
+        margin: 24px 0px 0px
+    &:hover
+        background-color: $colorcheckoutbox
+
+.checkout_box
+    background: $colorcheckoutbox
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    box-sizing: border-box
+    padding: 40px 0px 42px
+    @media (max-width: 1155px)
+        width: 50%
+        max-width: 360px
+        margin: 38px 0px 16px
+    @media (max-width: 760px)
+        width: 100%
+        max-width: 360px
+        margin: 38px 0px -32px
+.sub_total
+    display: flex
+    justify-content: space-between
+    width: 108px
+    font-weight: 400
+    font-size: 11px
+    line-height: 13px
+    text-transform: uppercase
+    color: $colorcartfinaltext
+    margin: 0px 34px 12px auto
+
+.grand_total
+    display: flex
+    justify-content: space-between
+    width: 200px
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    text-transform: uppercase
+    color: $colorheadback
+    margin: 0px 36px 22px auto
+
+.cart_price_pink
+    color: $colorselect
+
+.checkout_href_box
+    border-top: 1px solid #e2e2e2
+    background-color: transparent
+    align-self: center
+
+.checkout_href
+    background-color: $colorselect
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    text-transform: uppercase
+    color: $colormainback
+    box-sizing: border-box
+    padding: 16px 42px
+    margin: 16px 0px 0px
+    align-self: center
+    margin: 16px auto 0px
+    transition: background-color 0.3s
+    &:hover
+        background-color: $colorhover
+
+.checkout_line
+    align-self: center
+.bottomspace
+    margin-bottom: 128px
+.cartsum
+    position: absolute
+    display: none
+    top: -8px
+    right: -8px
+    justify-content: center
+    align-items: center
+    min-width: 20px
+    min-height: 20px
+    box-sizing: border-box
+    background: $colorselect
+    font-weight: normal
+    font-size: 12px
+    line-height: 14px
+    color: #FFFFFF
+    border-radius: 50px
+.cartadditional
+    position: relative
+#cartamount
+    display: none
+
+/*REGISTRATION//////////////////////////////////////////////////////////////////////////////////*/
+.reg_wrap
+    margin: 64px auto -32px
+    width: 100%
+    max-width: 1172px
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    box-sizing: border-box
+    padding: 0px 16px
+    @media (max-width: 1155px)
+        padding: 0px 8px
+        margin: 40px auto -32px
+        justify-content: space-around
+        gap: 8px
+    @media (max-width: 760px)
+        margin: 40px auto -28px
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        width: 100%
+        max-width: 376px
+        gap: 40px
+
+.reg_block_left
+    display: flex
+    flex-direction: column
+    width: 50%
+    max-width: 360px
+    @media (max-width: 760px)
+        width: 100%
+        max-width: 360px
+.reg_tittle_name
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    color: $colorheadback
+
+.reg_inp
+    border: 1px solid $colorcartbtn
+    font-weight: 300
+    font-size: 13px
+    line-height: 16px
+    color: $colorsearchtext
+    box-sizing: border-box
+    padding: 12px 16px 16px
+    margin: 20px 0px 0px
+
+.gender_box
+    display: flex
+    align-items: center
+    margin: 32px 0px 32px
+
+.reg_radio
+    margin: 0px 10px 0px 0px
+    opacity: 0.7
+
+.gender
+    font-weight: 300
+    font-size: 11px
+    line-height: 13px
+    color: $colortittletext
+    margin: 0px 20px 0px 0px
+
+.instr
+    font-size: 13px
+    line-height: 16px
+    color: $colorsearchtext
+    margin: 16px 0px 40px
+
+.reg_gend_btn
+    display: flex
+    align-items: center
+    gap: 20px
+    width: max-content
+    background-color: $colorselect
+    border: 0px transparent
+    box-sizing: border-box
+    padding: 16px 20px 16px 28px
+    transition: background-color 0.3s
+    font-weight: 400
+    font-size: 14px
+    line-height: 17px
+    color: $colormainback
+    text-transform: uppercase
+    &:hover
+        background-color: $colorhover
+
+.reg_block_right
+    display: flex
+    flex-direction: column
+    @media (max-width: 1155px)
+        width: 100%
+        max-width: 354px
+    @media (max-width: 760px)
+        width: 100%
+        max-width: 360px
+
+    &_tittle
+        font-weight: 300
+        font-size: 24px
+        line-height: 29px
+        text-transform: uppercase
+        color: $colortittletext
+        margin: 0px 0px 22px
+        @media (max-width: 1155px)
+            font-size: 16px
+            line-height: 19px
+            margin: 0px 0px 32px
+
+    &_text
+        font-weight: 300
+        font-size: 24px
+        line-height: 29px
+        color: $colortittletext
+        width: max-content
+        max-width: 652px
+        margin: 0px 0px 6px
+        @media (max-width: 1155px)
+            font-size: 16px
+            line-height: 19px
+            width: 100%
+
+.reg_list_best
+    margin: 16px 0px 0px
+    font-weight: 300
+    font-size: 24px
+    line-height: 29px
+    color: $colortittletext
+    display: flex
+    align-items: center
+    @media (max-width: 1155px)
+        font-size: 16px
+        line-height: 19px
+
+    & p
+        margin: 0px 0px 0px 22px
+
+.search_box
+    display: flex
+
+.search_text
+    border: 1px solid $colorcartbtn
+    font-weight: 300
+    font-size: 13px
+    line-height: 16px
+    color: $colorsearchtext
+    box-sizing: border-box
+    padding: 12px 16px 16px
