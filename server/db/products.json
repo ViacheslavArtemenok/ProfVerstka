@@ -1,0 +1,26 @@
+[
+  {
+    "id_product": 124,
+    "product_name": "Keyboard",
+    "price": 1600,
+    "img": "https://im9.cz/sk/iR/importprodukt-orig/ab3/ab3c4df8cf901ba2a0a0f282e8a2c80b.jpg"
+  },
+  {
+    "id_product": 457,
+    "product_name": "Gamepad",
+    "price": 3000,
+    "img": "https://2emarket.ru/wa-data/public/shop/products/09/32/13209/images/14159/14159.970.jpg"
+  },
+  {
+    "id_product": 123,
+    "product_name": "Notebook",
+    "price": 45600,
+    "img": "https://becompact.ru/upload/iblock/d0d/d0dc24a23943b06c975cec112bcb1926.jpg"
+  },
+  {
+    "id_product": 456,
+    "product_name": "Mouse",
+    "price": 1000,
+    "img": "https://images.satom.ru/i3/firms/28/6028/6028200/pic_4c4383f3bf89b7e_1024x3000.jpg"
+  }
+]
